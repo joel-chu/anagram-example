@@ -1,10 +1,12 @@
 // The main interface
 const { join } = require('path')
 
-const { MAX_CHAR, MIN_CHAR } = require('../share/config.json')
+const jsonData = require('../share/config.json')
+const { MAX_CHAR, MIN_CHAR } = jsonData
+
 const { getAnagram, getWords } = require('./lib')
 
-const WORDS_DIR = join(__dirname, '..', 'words')
+const WORDS_DIR = join(__dirname, '..', 'share')
 
 /**
  * The main interface to run the anagram program
