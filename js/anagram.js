@@ -1,7 +1,7 @@
 // The main interface
 const { join } = require('path')
 
-const { MAX_CHAR, MIN_CHAR } = require('./constants')
+const { MAX_CHAR, MIN_CHAR } = require('../share/config.json')
 const { getAnagram, getWords } = require('./lib')
 
 const WORDS_DIR = join(__dirname, '..', 'words')

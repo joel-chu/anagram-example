@@ -2,7 +2,7 @@
 const path = require('path')
 const fs = require('fs')
 
-const { FILE_EXT, DOT, ENCODING } = require('./constants')
+const { FILE_EXT, DOT, ENCODING } = require('../share/config.json')
 
 /**
  * Randomly rearrange an array using Fisher Yates algorithm
