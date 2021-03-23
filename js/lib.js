@@ -71,8 +71,6 @@ function getWords(dir, name) {
 function getAnagram(str, words) {
   // we don't want the str in the list of words
   const dict = words.filter(s => s !== str)
-  const dictLen = words.length
-
   const len = str.length
   const maxTried = Math.pow(2, len)
 
