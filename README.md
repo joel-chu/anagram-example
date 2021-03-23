@@ -21,4 +21,6 @@ Coming soon.
 
 ---
 
+The dictionary is borrow from [basicwords.org](https://anagrams.basicwords.org)
+
 Joel Chu (c) 2021
