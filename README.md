@@ -11,7 +11,7 @@ Run it from the command line, the first following word will be the input.
 ### Example
 
 ```sh
-$ node ./js/anagram.js word
+$ node ./js/anagram.js aborts
 
 ```
 
