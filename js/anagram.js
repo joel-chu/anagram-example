@@ -16,6 +16,7 @@ const WORDS_DIR = join(__dirname, '..', 'words')
  *
  * @param {string} str the input string
  * @return {string} the anagram or throw if there is an error
+ * @public
  */
 function anagram(str) {
   const len = str.length;
@@ -31,7 +32,13 @@ function anagram(str) {
 if (require.main === module) {
   const args = process.argv.slice(2)
   // could do a bit more wording hint etc, but that will be some other time
-  Reflect.call(null, anagram, args)
+  const result = Reflect.apply(anagram, null, args)
+
+  if (result) {
+    console.log(`We found the anagram for ${args[0]} > ${result}`)
+  } else {
+    console.error(`Sorry could not find anything`)
+  }
 
 } else {
   // using name export
