@@ -42,7 +42,21 @@ $ node ./js/anagram.js abort
 $ python3 ./python/anagram.py abort
 ```
 
-If you have `python-is-python3` (on Ubuntu / Debian) then just `python`
+If you have `python-is-python3` (on Ubuntu / Debian) then just `python`.
+
+You can also call the other script within the folder, after you make it an executable file:
+
+```sh
+$ chmod u+x python/main.py
+```
+
+Then you can just call it directly
+
+```sh
+$ python/main.py
+```
+
+It will ask you for input. 
 
 ##  Java
 
