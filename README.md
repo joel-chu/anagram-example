@@ -56,11 +56,13 @@ Then you can just call it directly
 $ python/main.py
 ```
 
-It will ask you for input. 
+It will ask you for input.
 
 ##  Java
 
-Coming soon.
+**Due to the <abbr title="Pain in your a**">PIA</abbr> nature of Java. You need to install [org.json.simple](https://code.google.com/archive/p/json-simple/) to your `CLASSPATH` before you can do anything with this code.**
+
+
 
 ---
 
