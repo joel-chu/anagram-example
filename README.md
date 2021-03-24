@@ -13,6 +13,19 @@ They will all be one liner to execute in the following format
 $ [lang-ex] [path/to/script] [input]
 ```
 
+## Using Docker file
+
+There are several `Dockerfile-*` on the root level (that's due to when we need to copy the `/share` folder, its outside the build context)
+Therefore when you build the docker image, you need to do the following:
+
+(Well, I am using podman ...)
+
+```
+$ docker build -f Dockerfile-[name-of-the-lang]
+```
+
+---
+
 ## Javascript
 
 No dependencies, just need node.js installed (>= 12.x)
