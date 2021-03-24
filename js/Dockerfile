@@ -6,4 +6,4 @@ WORKDIR /usr/src/app
 # Bundle app source
 COPY . .
 
-# and that's it
+# @TODO this is not working correct because the share folder is not copy over
