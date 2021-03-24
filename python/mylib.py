@@ -1,9 +1,18 @@
 import math
 import random
 import json
+from pathlib import Path
 
-jsonObj = open('../share/config.json')
+# this is just silly
+p = Path(__file__)
+
+WORDS_DIR = p.parent.parent.joinpath('share')
+
+configFile = WORDS_DIR.joinpath('config.json')
+
+jsonObj = open(str(configFile))
 jsonData = json.load(jsonObj)
+
 
 
 def fisherYates(arr):
@@ -47,7 +56,8 @@ def getWords(dir, name):
     """
     import the words file and turn into a usable format (array)
     """
-    fileObj = open('../share/' + jsonData['DOT'].join([str(name), jsonData['FILE_EXT']]))
+    filePath = WORDS_DIR.joinpath(jsonData['DOT'].join([str(name), jsonData['FILE_EXT']]))
+    fileObj = open(filePath)
     fileContent = fileObj.read()
 
     return fileContent.strip().split(' ')
