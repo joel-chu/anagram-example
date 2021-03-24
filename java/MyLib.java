@@ -1,0 +1,4 @@
+
+private static class MyLib {
+  
+}

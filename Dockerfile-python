@@ -1,0 +1,15 @@
+FROM python:3.8
+
+CMD ["mkdir", "python"]
+
+CMD ["mkdir", "share"]
+
+# Bundle app source
+
+COPY python/. python/.
+
+COPY ./share/. share/.
+
+CMD ["chmod", "u+x", "python/main.py"]
+
+CMD ["python/main.py"]
