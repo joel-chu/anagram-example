@@ -7,9 +7,15 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class MyFileReader {
+  private String basePath;
+  // does nothing
+  public void MyFileReader() {
 
-  public static void MyFileReader() {
+  }
 
+  // expect p to setup the basePath to the share folder
+  public void MyFileReader(String p) {
+    basePath = p;
   }
 
   /**
@@ -17,7 +23,7 @@ public class MyFileReader {
    * @param {String} pathToFile where the file is
    * @return {String} the content of the file
    */
-  public static String getFileContent(String pathToFile) {
+  public String getFileContent(String pathToFile) {
     try {
       // "../share/config.json"
       File jsonFileObj = new File(pathToFile);
@@ -43,8 +49,20 @@ public class MyFileReader {
     }
   }
 
-  public static getJsonContent() {
-    
+  // read the json file then return as json object
+  public Object getJsonContent(String pathToJsonFile) {
+    String jsonString = getFileContent(pathToJsonFile);
+    Object obj = parser.parse(jsonString);
+
+    return obj;
+  }
+
+  // read the file then return it as an Array
+  public String[] getSuggestionArray(String pathToFile) {
+    String content = getFileContent(pathToFile);
+    String[] strArray = content.split(' ');
+
+    return strArray;
   }
 
 }
