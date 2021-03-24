@@ -11,16 +11,15 @@ import java.util.*;
 
 public class MyFileReader {
   // private String basePath;
-  // does nothing
-  public MyFileReader() {
-
-  }
+  private Object nothingObj;
+  private String nothingStr;
 
   // expect p to setup the basePath to the share folder
-  /*
+
   public void MyFileReader(String p) {
-    basePath = p;
-  } */
+    nothingObj = new Object();
+    nothingStr = "";
+  }
 
   /**
    * read a file into string, so much work for so little
@@ -47,6 +46,8 @@ public class MyFileReader {
       System.out.println("An error occurred.");
       e.printStackTrace();
     }
+    // why the F javac expect a return statement here?
+    return nothingStr;
   }
 
   // read the json file then return as json object
@@ -58,14 +59,20 @@ public class MyFileReader {
       return parser.parse(jsonString);
     } catch(ParseException e) {
       System.out.println("Error position: " + e.getPosition());
-      System.out.println(e);
+      e.printStackTrace();
     }
+    // why the F javac expect a return statement here
+    return nothingObj;
   }
 
   // read the file then return it as an Array
   public String[] getSuggestionArray(String pathToFile) {
-    String content = (String)getFileContent(pathToFile);
-    return content.split(' ');
+    String content = getFileContent(pathToFile);
+    // what a piss off error - char using single quote ...
+    // if I use single quote around the space, I get
+    // error: incompatible types: char cannot be converted to String
+
+    return content.split(" ");
   }
 
 }
