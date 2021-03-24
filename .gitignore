@@ -2,3 +2,5 @@ java/org/*
 java/json-simple-1.1.1.jar
 java/Test.java
 java/Test.class
+.idea
+anagram-example.iml
