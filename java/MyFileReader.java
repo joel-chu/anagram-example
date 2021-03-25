@@ -1,7 +1,7 @@
 package example.anagram;
 
 // testing how to import the jar file
-// import org.json.simple.JSONObject;
+import org.json.simple.JSONObject;
 // import org.json.simple.JSONArray;
 import org.json.simple.parser.ParseException;
 import org.json.simple.parser.JSONParser;
@@ -50,8 +50,15 @@ public class MyFileReader {
     return nothingStr;
   }
 
+  // this is really as stupid as it gets
+  public JSONObject getJsonContent(String pathToJsonFile) {
+    Object json = getJsonContentAction(pathToJsonFile);
+
+    return (JSONObject)json;
+  }
+
   // read the json file then return as json object
-  public Object getJsonContent(String pathToJsonFile) {
+  private Object getJsonContentAction(String pathToJsonFile) {
     Object nothing = new Object();
     try {
       JSONParser parser = new JSONParser();
@@ -65,6 +72,9 @@ public class MyFileReader {
     // why the F javac expect a return statement here
     return nothingObj;
   }
+
+
+
 
   // read the file then return it as an Array
   public String[] getWordsArray(String pathToFile) {

@@ -72,12 +72,12 @@ function getAnagram(str, words) {
   // we don't want the str in the list of words
   const dict = words.filter(s => s !== str)
   const len = str.length
-  const maxTried = Math.pow(2, len)
+  const maxTry = Math.pow(2, len)
 
   let tried = 0
   let possibleWords = []
 
-  while (tried <= maxTried) {
+  while (tried <= maxTry) {
     const word = getPossibleWord(str, possibleWords)
 
     // is this word in the dictionary?
