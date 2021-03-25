@@ -7,21 +7,27 @@ import org.json.simple.JSONObject;
 
 public class MyLib {
 
-  private String pathToWords;
   private JSONObject config;
 
   private MyFileReader reader;
   private ScrambleWords swObj;
 
+  private String[] dictWords;
+
   private String space = " ";
 
+  public int maxChar;
+  public int minChar;
+
   // constructor
-  public void MyLib(String pathToConfig, String ptw, String wordToTry) {
+  public void MyLib(String pathToConfig, String wordToTry) {
     // setup the required properties
     reader = new MyFileReader();
     config = reader.getJsonContent(pathToConfig);
+    // prepare for use later
+    maxChar = (int) config.get("MAX_CHAR");
+    minChar = (int) config.get("MIN_CHAR");
     // setup for reuse
-    pathToWords = ptw;
     swObj = new ScrambleWords(wordToTry);
   }
 

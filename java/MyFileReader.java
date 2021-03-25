@@ -14,9 +14,8 @@ public class MyFileReader {
   private Object nothingObj;
   private String nothingStr;
 
-  // expect p to setup the basePath to the share folder
-
-  public void MyFileReader(String p) {
+  // constructor 
+  public void MyFileReader() {
     nothingObj = new Object();
     nothingStr = "";
   }
@@ -73,10 +72,7 @@ public class MyFileReader {
     return nothingObj;
   }
 
-
-
-
-  // read the file then return it as an Array
+  // read the file then return it as an String Array
   public String[] getWordsArray(String pathToFile) {
     String content = getFileContent(pathToFile);
     // what a piss off error - char using single quote ...

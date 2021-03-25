@@ -6,12 +6,15 @@ import java.util.*;
 
 public class ScrambleWords {
   String wordToScramble;
-  //  error: constructor ScrambleWords in class ScrambleWords cannot be applied to given types;???
+
+  // constructor
+  // error: constructor ScrambleWords in class ScrambleWords cannot be applied to given types;???
   // scramble the word's character order
   public ScrambleWords(String str) {
     wordToScramble = str;
   }
 
+  // the main call to get the scrambled word
   public String getIt() {
     // need to turn the char[] into String[] before we can use
     String[] usableStrArr = stringToStringArray(wordToScramble);
@@ -19,7 +22,6 @@ public class ScrambleWords {
 
     return String.join("", newCharArray);
   }
-
 
   // randomized the array using Fisher Yates algorithm
   private String[] fisherYates(String[] arr) {
@@ -59,6 +61,7 @@ public class ScrambleWords {
     for (int i = 0; i < c; i++) {
       data.add(String.valueOf(f[i]));
     }
+    
     return getStringArray(data);
   }
 

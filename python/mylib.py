@@ -13,8 +13,6 @@ configFile = WORDS_DIR.joinpath('config.json')
 jsonObj = open(str(configFile))
 jsonData = json.load(jsonObj)
 
-
-
 def fisherYates(arr):
     """
     Randomly rearrange an array using Fisher Yate algorithm
