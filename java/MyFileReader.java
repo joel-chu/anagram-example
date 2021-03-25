@@ -52,6 +52,7 @@ public class MyFileReader {
 
   // read the json file then return as json object
   public Object getJsonContent(String pathToJsonFile) {
+    Object nothing = new Object();
     try {
       JSONParser parser = new JSONParser();
       String jsonString = getFileContent(pathToJsonFile);
@@ -66,11 +67,12 @@ public class MyFileReader {
   }
 
   // read the file then return it as an Array
-  public String[] getSuggestionArray(String pathToFile) {
+  public String[] getWordsArray(String pathToFile) {
     String content = getFileContent(pathToFile);
     // what a piss off error - char using single quote ...
     // if I use single quote around the space, I get
     // error: incompatible types: char cannot be converted to String
+    // System.out.println(content);
 
     return content.split(" ");
   }

@@ -1,29 +1,32 @@
 // define a package namespace
 package example.anagram;
 
+import java.util.*;
+import example.anagram.MyFileReader;
 
 public class MyLib {
+
+  private MyFileReader reader;
+  private Object config;
+
   // declare a constructor
-  public void MyLib() {
-
+  public void MyLib(String pathToConfig) {
+    // setup the required properties
+    reader = new MyFileReader();
+    config = reader.getJsonContent(pathToConfig);
   }
 
-  // randomized the array using Fisher Yates algorithm
-  private String[] fisherYates(String[] arr) {
-    int ctn = arr.length;
 
-  }
 
-  // scramble the word's character order
-  private String scrambleWords(String str) {
-    char[] charArray = str.toCharArray();
-    char[] newCharArray = fisherYates(charArray);
+  // wrap the check in online because it's
+  // not as simple as in JS
+  private Boolean hasTried(String word, String[] triedWords) {
 
-    return String.join("", newCharArray);
   }
 
   // find the possible word of anagram
   private String getPossibleWord(String str, String[] triedWords) {
+    String possibleWord = scrambleWords(str);
 
   }
 
