@@ -15,6 +15,9 @@ def anagram(str):
         return getAnagram(str, words)
 
 def main(word):
+    """
+    wrapper method to hold everything together
+    """
     result = anagram(word)
     if result:
         print(f"We found an angram for {word} > {result}")
