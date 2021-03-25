@@ -91,8 +91,10 @@ $ docker build -f Dockerfile-[name-of-the-lang]
 
 ---
 
----
+## THANK YOU
 
-The dictionary is borrow from [basicwords.org](https://anagrams.basicwords.org)
+The dictionary is borrow from [basicwords.org](https://anagrams.basicwords.org).
+
+---
 
 Joel Chu (c) 2021
