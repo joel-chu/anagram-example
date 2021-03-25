@@ -82,14 +82,15 @@ function getAnagram(str, words) {
 
     // is this word in the dictionary?
     if (dict.filter(w => w === word).length > 0) {
-      return word
+      // also return the tried number
+      return [word, tried]
     }
 
     possibleWords.push(word)
     ++tried
   }
 
-  return false
+  return [false, tried]
 }
 
 
