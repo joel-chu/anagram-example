@@ -5,12 +5,16 @@ package example.anagram;
 import java.util.*;
 
 public class ScrambleWords {
-
+  String wordToScramble;
+  //  error: constructor ScrambleWords in class ScrambleWords cannot be applied to given types;???
   // scramble the word's character order
-  public String ScrambleWords(String str) {
+  public ScrambleWords(String str) {
+    wordToScramble = str;
+  }
 
+  public String getIt() {
     // need to turn the char[] into String[] before we can use
-    String[] usableStrArr = stringToStringArray(str);
+    String[] usableStrArr = stringToStringArray(wordToScramble);
     String[] newCharArray = fisherYates(usableStrArr);
 
     return String.join("", newCharArray);
@@ -23,7 +27,7 @@ public class ScrambleWords {
     for (int i = ctn - 1; i > 0; i--) {
       Random r = new Random();
       // Java round return int floor return double
-      int j = Math.round(r * (i + 1));
+      int j = r.nextInt(i); //Math.round(r * (i + 1));
       String temp = arr[i];
       arr[i] = arr[j];
       arr[j] = temp;
