@@ -7,7 +7,7 @@ import org.json.simple.JSONObject;
 
 public class MyLib {
 
-  private JSONObject config;
+  private JSONObject configObj;
 
   private MyFileReader reader;
   private ScrambleWords swObj;
@@ -15,18 +15,18 @@ public class MyLib {
   private String[] dictWords;
 
   private String space = " ";
-
-  public int maxChar;
-  public int minChar;
+  // @NOTE: JSONObject doesn't return int ...
+  public long maxChar;
+  public long minChar;
 
   // constructor
-  public void MyLib(String pathToConfig, String wordToTry) {
+  public MyLib(String pathToConfig, String wordToTry) {
     // setup the required properties
     reader = new MyFileReader();
-    config = reader.getJsonContent(pathToConfig);
+    configObj = reader.getJsonContent(pathToConfig);
     // prepare for use later
-    maxChar = (int) config.get("MAX_CHAR");
-    minChar = (int) config.get("MIN_CHAR");
+    maxChar = (long) configObj.get("MAX_CHAR");
+    minChar = (long) configObj.get("MIN_CHAR");
     // setup for reuse
     swObj = new ScrambleWords(wordToTry);
   }
@@ -49,8 +49,8 @@ public class MyLib {
 
   // import the words file return as array
   public String[] getWords(String dir, String name) {
-    String fileExt = String.valueOf(this.config.get("FILE_EXT"));
-    String dot = String.valueOf(this.config.get("DOT"));
+    String fileExt = String.valueOf(configObj.get("FILE_EXT"));
+    String dot = String.valueOf(configObj.get("DOT"));
 
     String[] filenameParts = { name, fileExt };
 
