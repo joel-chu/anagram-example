@@ -60,7 +60,25 @@ cesa
 
 And 4 letters long word can have up to 24 different combinations. One extra letter create quite a big jump in numbers of possibilities. 
 
- 
+The formula to calculation all possible combination is like this 
 
+```
+3 + 2 + 1 = 6
+4 + 3 + 2 + 1 = 6
+``` 
 
+For proper mathematics equation representation can see the reference section above. 
+
+Now we need to use computer language to calculate the result.
+
+```js 
+// calculate possible combination total 
+function cpct(n, total = 0) {
+    if (n === 0) {
+        return total
+    }
+    total = n + (n-1)
+    return cpct(n, total)
+}
+```
 
