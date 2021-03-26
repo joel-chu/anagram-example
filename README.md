@@ -40,6 +40,8 @@ Run it like so:
 $ node ./js/anagram.js abort
 ```
 
+For developers using Deepin 20.x system, you might want to take a look at this [note about setting up node.js](./doc/deepin-20.md) on your system.
+
 ## Python
 
 Again no dependencies, just need Python 3.x

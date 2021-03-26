@@ -69,15 +69,22 @@ The formula to calculation all possible combination is like this
 
 For proper mathematics equation representation can see the reference section above. 
 
-Now we need to use computer language to calculate the result.
+Now we need to use computer language to calculate the result. Here I am using Javascript.
 
 ```js 
+// version 1
 // calculate possible combination total 
 function cpct(n, total = 0) {
+    // exit cause 
     if (n === 0) {
         return total
     }
+    // init 
+    if (total === 0) {
+        total = n 
+    }
     total = n + (n-1)
+    n-- 
     return cpct(n, total)
 }
 ```
