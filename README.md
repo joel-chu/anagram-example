@@ -17,7 +17,8 @@ In there, you will learn quite few things:
 
 And a few bits here and there.
 
-This was developed on [Pop!_OS (Ubuntu 20.10)](https://pop.system76.com/).
+This was developed on [Pop!_OS (Ubuntu 20.10)](https://pop.system76.com/)
+and [Deepin 20.x (Debian 10)](https://www.deepin.org)
 
 ## Examples
 
