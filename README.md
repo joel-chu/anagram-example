@@ -1,6 +1,6 @@
 # Anagram example
 
-Just a few example of anagram using several different computer languages.
+> A few examples of anagram guessing program, using several different computer languages.
 It's quite a good example to show the different between languages.
 
 In there, you will learn quite few things:
@@ -11,6 +11,9 @@ In there, you will learn quite few things:
 - (List) Array operation
 - Type converting (For strict type languages)
 - Comprehension (Python)
+- Math operation
+- [Algorithm](./doc/algorithm.md)
+- SQL (using sqlite) coming soon
 
 And a few bits here and there.
 
