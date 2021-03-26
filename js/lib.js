@@ -5,47 +5,8 @@ const fs = require('fs')
 const jsonData = require('../share/config.json')
 const { FILE_EXT, DOT, ENCODING } = jsonData
 
-
-/**
- * Randomly rearrange an array using Fisher Yates algorithm
- * @param {array} arr input array
- * @return {array} randomized array
- */
-function fisherYates(arr) {
-  const ctn = arr.length
-  for (let i = ctn - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    const temp = arr[i]
-      arr[i] = arr[j]
-      arr[j] = temp
-  }
-
-  return arr
-}
-
-/**
- * scramble the characters
- * @param {string} str input
- * @return {string} scrambled character string
- */
-const scrambleWords = (str) => fisherYates(str.split('')).join('')
-
-/**
- * get a possible word that we haven't tried before
- * @param {string} str to scramble
- * @param {array} [triedsWords=[]] already tried word(s)
- * @return {string} a new scrambled word or false when there is none
- */
-function getPossibleWord(str, triedWords = []) {
-  const possibleWord = scrambleWords(str)
-  const tried = triedWords.filter(w => w === possibleWord).length > 0
-  if (tried) {
-
-    return getPossibleWord(str, triedWords)
-  }
-
-  return possibleWord
-}
+const { getCombinationTotal } = require('./math')
+const { getPossibleWord } = require('./get-possible-word')
 
 /**
  * import the words file and turn into a usable format (array)
@@ -72,12 +33,14 @@ function getAnagram(str, words) {
   // we don't want the str in the list of words
   const dict = words.filter(s => s !== str)
   const len = str.length
-  const maxTry = Math.pow(2, len)
+  const maxTry = getCombinationTotal(len)
 
   let tried = 0
   let possibleWords = []
 
   while (tried <= maxTry) {
+    // need to wrap this in a setTimeout( function() {}) but we need to rewrite this part
+
     const word = getPossibleWord(str, possibleWords)
 
     // is this word in the dictionary?
