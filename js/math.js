@@ -23,12 +23,3 @@ function getCombinationTotal(n, total = 0) {
 module.exports = {
     getCombinationTotal
 }
-
-/*
-let result5 = getCombinationTotal(5)
-let result6 = getCombinationTotal(6)
-let result7 = getCombinationTotal(7)
-
-
-console.log(result5, result6, result7)
-*/

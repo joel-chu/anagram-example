@@ -2,13 +2,8 @@
  * From v2 we split out the major methods and rename the method with
  * their version number, this way we can see how we progress with this application
  */
-const { fisherYates } = require('./fisher-yates')
-/**
- * scramble the characters
- * @param {string} str input
- * @return {string} scrambled character string
- */
-const scrambleWords = (str) => fisherYates(str.split('')).join('')
+
+const { rearrangeLetters } = require('./rearrange-letters')
 
 /**
  * V.1
@@ -20,11 +15,11 @@ const scrambleWords = (str) => fisherYates(str.split('')).join('')
  * @return {string} a new scrambled word or false when there is none
  */
 function getPossibleWordV1(str, triedWords = []) {
-  const possibleWord = scrambleWords(str)
+  const possibleWord = rearrangeLetters(str)
   const tried = triedWords.filter(w => w === possibleWord).length > 0
   if (tried) {
 
-    return getPossibleWord(str, triedWords)
+    return getPossibleWordV1(str, triedWords)
   }
 
   return possibleWord
@@ -36,9 +31,22 @@ function getPossibleWordV1(str, triedWords = []) {
  * 
  */
 async function getPossibleWord(str, triedWords = []) {
-  const possibleWord
-}
 
+  const possibleWord = rearrangeLetters(str)
+
+  const tried = triedWords.filter(w => w === possibleWord).length > 0
+  // here we need to wrap the call in a promise
+  return new Promise(resolver => {
+    if (tried) {
+      setTimeout(() => {
+        let newWord = await getPossibleWord()
+        resolver(newWord)
+      }, 0)
+    } else {
+      resolver(possibleWord)
+    }
+  })
+}
 
 // we will always export with this name
 module.exports = {
