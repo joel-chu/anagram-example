@@ -3,7 +3,7 @@
 > A few examples of anagram guessing program, using several different computer languages.
 It's quite a good example to show the different between languages.
 
-In there, you will learn quite few things:
+In here, you will learn quite few things:
 
 - File access
 - JSON
@@ -13,7 +13,7 @@ In there, you will learn quite few things:
 - Comprehension (Python)
 - Math operation
 - [Algorithm](./doc/algorithm.md)
-- SQL (using sqlite) coming soon
+- SQL (using sqlite) _coming soon_
 
 And a few bits here and there.
 
@@ -105,11 +105,11 @@ $ sudo sh -c 'echo "deb https://packages.sury.org/php/ buster main" > /etc/apt/s
 Then both system are the same:
 
 ```shell script
-
-```
 $ sudo apt install php8.0-common php8.0-cli -y
 $ php -v 
 $ php -m 
+```
+
 ---
 
 ## Using Docker file
