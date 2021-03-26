@@ -39,6 +39,9 @@ public class MyLib {
   public String getPossibleWord(String str, ArrayList<String> triedWords) {
     // String possibleWord = scrambleWords(str);
     String possibleWord = swObj.getIt();
+
+    System.out.println("Tried times: " + triedWords.size());
+
     if (triedWords.contains(possibleWord)) {
 
       return getPossibleWord(str, triedWords);
@@ -82,6 +85,8 @@ public class MyLib {
     ArrayList<String> possibleWords = new ArrayList<>();
 
     while (tried <= maxTry) {
+      System.out.println("tried: " + tried);
+
       String w = getPossibleWord(str, possibleWords);
 
       if (dict.contains(w)) {
