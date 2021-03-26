@@ -26,7 +26,7 @@ $ [lang-ex] [path/to/script] [input]
 
 ---
 
-## Javascript
+## Javascript (node.js)
 
 No dependencies, just need node.js installed (>= 12.x)
 
@@ -60,7 +60,7 @@ $ python/main.py
 
 It will prompt you for input.
 
-##  Java
+## Java
 
 **Due to the <abbr title="Pain in your a**">PIA</abbr> nature of Java. You need to install [org.json.simple](https://code.google.com/archive/p/json-simple/) to your `CLASSPATH` before you can do anything with this code.**
 

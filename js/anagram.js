@@ -36,10 +36,12 @@ if (require.main === module) {
   // could do a bit more wording hint etc, but that will be some other time
   const result = Reflect.apply(anagram, null, args)
 
-  if (result) {
-    console.log(`We found the anagram for ${args[0]} > ${result}`)
+  const [ word, tried ] = result;
+
+  if (word) {
+    console.log(`We found the anagram for ${args[0]} > ${word}, after we guess ${tried} time${tried > 1 ? 's' : ''}`)
   } else {
-    console.error(`Sorry could not find anything`)
+    console.error(`Sorry could not find anything, after try ${tried} times.`)
   }
 
 } else {
