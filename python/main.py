@@ -2,7 +2,7 @@
 
 from anagram import main
 
-# make this more interactive
+# make this interactive
 
 def run():
     """
@@ -20,4 +20,3 @@ def run():
 
 
 run()
-

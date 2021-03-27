@@ -1,7 +1,7 @@
 // the library functions
 const { getCombinationTotal } = require('./lib/math')
+const { checkWord } = require('./lib/check-word')
 const { getPossibleWord } = require('./get-possible-word')
-
 /**
  * find the anagram from the input str
  * @param {string} str input word
@@ -79,11 +79,14 @@ function getAnagramAsync(str, dict, maxTry, tried = 0, possibleWord = [], resolv
 function getAnagram(str, words) {
   // here we also perform a check, since there are only so many word can have an anagram
   // we first check if this word can have one
-
+  const inDict = checkWord(str, words)
+  if (!inDict) {
+    return Promise.reject([false, 0])
+  }
 
   const dict = words.filter(s => s !== str)
-
   const len = str.length
+  
   const maxTry = getCombinationTotal(len)
 
   return getAnagramAsync(str, dict, maxTry)

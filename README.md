@@ -8,6 +8,8 @@ In here, you will learn quite few things:
 - File access
 - JSON
 - Recursion
+- Threads
+- Process (node.js)
 - (List) Array operation
 - Type converting (For strict type languages)
 - Comprehension (Python)
@@ -41,6 +43,8 @@ $ node ./js/anagram.js abort
 ```
 
 For developers using Deepin 20.x system, you might want to take a look at this [note about setting up node.js](./doc/deepin-20.md) on your system.
+
+Also, I have written a [development change log](./doc/changelog.md) to explain more in depth about the why and how.  
 
 ## Python
 
@@ -80,24 +84,24 @@ Should give you a result.
 
 ## PHP
 
-It was develop using the latest PHP 8.x. You might have to install / upgrade first 
+It was develop using the latest PHP 8.x. You might have to install / upgrade first
 
-### For Ubuntu 
+### For Ubuntu
 
-```sh 
+```sh
 $ sudo add-apt-repository ppa:ondrej/php
 $ sudo apt-get update
 ```
 
-### For Debian 
+### For Debian
 
-```sh 
+```sh
 $ sudo apt install apt-transport-https lsb-release ca-certificates wget -y
-$ sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg 
+$ sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 $ sudo sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 $ sudo apt update
 ```
-For those using Deepin system, the `$(lsb_release -sc)` will return empty and make it not working. 
+For those using Deepin system, the `$(lsb_release -sc)` will return empty and make it not working.
 So you need to this instead (Assume your are running the latest Deepin 20 system)
 
 ```shell script
@@ -108,8 +112,8 @@ Then both system are the same:
 
 ```shell script
 $ sudo apt install php8.0-common php8.0-cli -y
-$ php -v 
-$ php -m 
+$ php -v
+$ php -m
 ```
 
 ---

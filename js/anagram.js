@@ -1,7 +1,7 @@
 // The main interface
 const { join } = require('path')
 
-const { getWords } = require('./lib/getWords')
+const { getWords } = require('./lib/get-words')
 const { getAnagram } = require('./get-anagram')
 
 const { configJson } = require('../lib/config-json')
@@ -34,10 +34,9 @@ function anagram(str) {
 // finally check if it's call from cmd or not
 if (require.main === module) {
   const args = process.argv.slice(2)
-  // could do a bit more wording hint etc, but that will be some other time
-  const resultPromise = Reflect.apply(anagram, null, args)
+
   // V.2 we change this to a Promise interface
-  resultPromise
+  Reflect.apply(anagram, null, args)
     .then(result => {
       const [ word, tried ] = result;
       console.log(`We found the anagram for ${args[0]} > ${word}, after we guess ${tried} time${tried > 1 ? 's' : ''}`)
@@ -47,6 +46,6 @@ if (require.main === module) {
       console.error(`Sorry could not find anything, after try ${tried} times.`)
     })
 } else {
-  // name export it again 
+  // name export it again
   module.exports = { anagram }
 }
