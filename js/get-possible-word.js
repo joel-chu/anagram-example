@@ -28,9 +28,9 @@ function getPossibleWordV1(str, triedWords = []) {
 /**
  * to get the stack finish before it continue, we could use the setTimeout trick
  * but once we employ this, the entire program structure will have to change
- * 
+ *
  */
-async function getPossibleWord(str, triedWords = []) {
+function getPossibleWordAsync(str, triedWords = []) {
 
   const possibleWord = rearrangeLetters(str)
 
@@ -38,15 +38,20 @@ async function getPossibleWord(str, triedWords = []) {
   // here we need to wrap the call in a promise
   return new Promise(resolver => {
     if (tried) {
+      // this will effectively put the execution in the queue wait
+      // and node will have time to release the stack
       setTimeout(() => {
-        let newWord = await getPossibleWord()
-        resolver(newWord)
+        getPossibleWord()
+          .then(resolver)
       }, 0)
     } else {
       resolver(possibleWord)
     }
   })
 }
+
+// rename it
+const getPossibleWord = getPossibleWordAsync
 
 // we will always export with this name
 module.exports = {
