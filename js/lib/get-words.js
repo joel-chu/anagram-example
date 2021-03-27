@@ -1,10 +1,9 @@
 // we put those methods that is not going to change
-
-
 const path = require('path')
 const fs = require('fs')
 
-const { FILE_EXT, DOT, ENCODING } = require('./config-json')
+const { configJson } = require('./config-json')
+const  { FILE_EXT, DOT, ENCODING } = configJson
 
 /**
  * import the words file and turn into a usable format (array)

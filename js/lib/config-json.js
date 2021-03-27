@@ -2,4 +2,4 @@
 
 const jsonData = require('../../share/config.json')
 
-exports.jsonConfig = jsonData
+exports.configJson = jsonData

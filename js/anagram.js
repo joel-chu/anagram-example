@@ -1,10 +1,11 @@
 // The main interface
 const { join } = require('path')
 
-const jsonData = require('../share/config.json')
-const { MAX_CHAR, MIN_CHAR } = jsonData
+const { getWords } = require('./lib/getWords')
+const { getAnagram } = require('./get-anagram')
 
-const { getAnagram, getWords } = require('./lib')
+const { configJson } = require('../lib/config-json')
+const { MAX_CHAR, MIN_CHAR } = configJson
 
 const WORDS_DIR = join(__dirname, '..', 'share')
 
@@ -34,17 +35,18 @@ function anagram(str) {
 if (require.main === module) {
   const args = process.argv.slice(2)
   // could do a bit more wording hint etc, but that will be some other time
-  const result = Reflect.apply(anagram, null, args)
-
-  const [ word, tried ] = result;
-
-  if (word) {
-    console.log(`We found the anagram for ${args[0]} > ${word}, after we guess ${tried} time${tried > 1 ? 's' : ''}`)
-  } else {
-    console.error(`Sorry could not find anything, after try ${tried} times.`)
-  }
-
+  const resultPromise = Reflect.apply(anagram, null, args)
+  // V.2 we change this to a Promise interface
+  resultPromise
+    .then(result => {
+      const [ word, tried ] = result;
+      console.log(`We found the anagram for ${args[0]} > ${word}, after we guess ${tried} time${tried > 1 ? 's' : ''}`)
+    })
+    .catch(error => {
+      const [, tried] = error
+      console.error(`Sorry could not find anything, after try ${tried} times.`)
+    })
 } else {
-  // using name export
+  // name export it again 
   module.exports = { anagram }
 }
