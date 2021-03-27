@@ -3,7 +3,7 @@
  * their version number, this way we can see how we progress with this application
  */
 
-const { rearrangeLetters } = require('./rearrange-letters')
+const { rearrangeLetters } = require('./lib/rearrange-letters')
 
 /**
  * V.1
@@ -30,7 +30,7 @@ function getPossibleWordV1(str, triedWords = []) {
  * but once we employ this, the entire program structure will have to change
  *
  */
-function getPossibleWordAsync(str, triedWords = []) {
+function getPossibleWordAsync(str, triedWords = [], _resovler = null) {
 
   const possibleWord = rearrangeLetters(str)
 
@@ -41,8 +41,7 @@ function getPossibleWordAsync(str, triedWords = []) {
       // this will effectively put the execution in the queue wait
       // and node will have time to release the stack
       setTimeout(() => {
-        getPossibleWord()
-          .then(resolver)
+        getPossibleWordAsync(str, triedWords, resolver)
       }, 0)
     } else {
       resolver(possibleWord)
@@ -50,10 +49,5 @@ function getPossibleWordAsync(str, triedWords = []) {
   })
 }
 
-// rename it
-const getPossibleWord = getPossibleWordAsync
-
-// we will always export with this name
-module.exports = {
-    getPossibleWord
-}
+// always export with this name
+exports.getPossibleWord = getPossibleWordAsync

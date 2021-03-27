@@ -4,7 +4,7 @@ const { join } = require('path')
 const { getWords } = require('./lib/get-words')
 const { getAnagram } = require('./get-anagram')
 
-const { configJson } = require('../lib/config-json')
+const { configJson } = require('./lib/config-json')
 const { MAX_CHAR, MIN_CHAR } = configJson
 
 const WORDS_DIR = join(__dirname, '..', 'share')
@@ -42,6 +42,8 @@ if (require.main === module) {
       console.log(`We found the anagram for ${args[0]} > ${word}, after we guess ${tried} time${tried > 1 ? 's' : ''}`)
     })
     .catch(error => {
+      console.log(typeof error, error)
+
       const [, tried] = error
       console.error(`Sorry could not find anything, after try ${tried} times.`)
     })

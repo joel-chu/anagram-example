@@ -49,7 +49,7 @@ function getAnagramV1(str, words) {
  * @param {function} rejecter the Promise.rejecter when we don't have an answer
  * @return {promise} resolve / reject depends on the outcome
  */
-function getAnagramAsync(str, dict, maxTry, tried = 0, possibleWord = [], resolver = null , rejecter = null) {
+function getAnagramAsync(str, dict, maxTry, tried = 0, possibleWords = [], resolver = null , rejecter = null) {
   return new Promise((_resolver, _rejecter) => {
     if (tried <= maxTry) {
       getPossibleWord(str, possibleWords)
@@ -86,7 +86,7 @@ function getAnagram(str, words) {
 
   const dict = words.filter(s => s !== str)
   const len = str.length
-  
+
   const maxTry = getCombinationTotal(len)
 
   return getAnagramAsync(str, dict, maxTry)
