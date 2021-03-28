@@ -24,7 +24,7 @@ const WORDS_DIR = join(__dirname, '..', 'share')
 function anagram(str) {
   const len = str.length;
   if (len > MAX_CHAR || len < MIN_CHAR) {
-    throw new Error(`Error: please provide a word between ${MIN_CHAR} and ${MAX_CHAR} `)
+    return console.error(`Error: please provide a word between ${MIN_CHAR} and ${MAX_CHAR} `)
   }
   const words = getWords(WORDS_DIR, len)
 
@@ -34,6 +34,10 @@ function anagram(str) {
 // finally check if it's call from cmd or not
 if (require.main === module) {
   const args = process.argv.slice(2)
+
+  if (!args.length) {
+    return console.error(`You need to provide a word`)
+  }
 
   // V.2 we change this to a Promise interface
   Reflect.apply(anagram, null, args)

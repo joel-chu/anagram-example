@@ -14,12 +14,12 @@ const { rearrangeLetters } = require('./lib/rearrange-letters')
  * @param {array} [triedsWords=[]] already tried word(s)
  * @return {string} a new scrambled word or false when there is none
  */
-function getPossibleWordV1(str, triedWords = []) {
+function getPossibleWordSync(str, triedWords = []) {
   const possibleWord = rearrangeLetters(str)
   const tried = triedWords.filter(w => w === possibleWord).length > 0
   if (tried) {
 
-    return getPossibleWordV1(str, triedWords)
+    return getPossibleWordSync(str, triedWords)
   }
 
   return possibleWord
@@ -28,26 +28,35 @@ function getPossibleWordV1(str, triedWords = []) {
 /**
  * to get the stack finish before it continue, we could use the setTimeout trick
  * but once we employ this, the entire program structure will have to change
- *
+ * @param {string} str
+ * @param {array} triedWords
+ * @param {function} _resolver
+ * @return {void}
  */
-function getPossibleWordAsync(str, triedWords = [], _resovler = null) {
-
+function getPossibleWordInner(str, triedWords, _resolver) {
   const possibleWord = rearrangeLetters(str)
-
   const tried = triedWords.filter(w => w === possibleWord).length > 0
-  // here we need to wrap the call in a promise
+
+  if (tried) {
+    // this will effectively put the execution in the queue wait
+    // and node will have time to release the stack
+    setTimeout(() => {
+      getPossibleWordInner(str, triedWords, _resolver)
+    }, 0)
+  } else {
+    _resolver(possibleWord)
+  }
+}
+
+/**
+ * We setup the promise here
+ * (params) Same as above
+ */
+function getPossibleWordPromise(str, triedWords = []) {
   return new Promise(resolver => {
-    if (tried) {
-      // this will effectively put the execution in the queue wait
-      // and node will have time to release the stack
-      setTimeout(() => {
-        getPossibleWordAsync(str, triedWords, resolver)
-      }, 0)
-    } else {
-      resolver(possibleWord)
-    }
+    getPossibleWordInner(str, triedWords, resolver)
   })
 }
 
 // always export with this name
-exports.getPossibleWord = getPossibleWordAsync
+exports.getPossibleWord = getPossibleWordPromise
