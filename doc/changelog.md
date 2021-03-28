@@ -52,7 +52,7 @@ function recursion1(count = 0) {
 But wait, if you run the example above, there won't be any output at all.
 Because `setTimeout` will not return anything from the inner function call.
 
-To get around this problem, we need to restructure the function with `Promise`
+To get around this problem, we need to refactor the function with `Promise`
 
 ```js
 const max = 100000
