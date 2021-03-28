@@ -1,6 +1,7 @@
 {
-  "MAX_CHAR": 15,
+  "MAX_CHAR": 7,
   "MIN_CHAR": 2,
+  "POSSIBLE_MAX_CHAR": 15,
   "FILE_EXT": "txt",
   "DOT": ".",
   "ENCODING": "utf8"

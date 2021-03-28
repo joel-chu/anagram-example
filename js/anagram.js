@@ -1,10 +1,11 @@
 // The main interface
 const { join } = require('path')
 
-const jsonData = require('../share/config.json')
-const { MAX_CHAR, MIN_CHAR } = jsonData
+const { getWords } = require('./lib/get-words')
+const { getAnagram } = require('./get-anagram')
 
-const { getAnagram, getWords } = require('./lib')
+const { configJson } = require('./lib/config-json')
+const { MAX_CHAR, MIN_CHAR } = configJson
 
 const WORDS_DIR = join(__dirname, '..', 'share')
 
@@ -21,30 +22,50 @@ const WORDS_DIR = join(__dirname, '..', 'share')
  * @public
  */
 function anagram(str) {
-  const len = str.length;
+  const len = str.length
   if (len > MAX_CHAR || len < MIN_CHAR) {
-    throw new Error(`Error: please provide a word between ${MIN_CHAR} and ${MAX_CHAR} `)
+    return Promise.reject([null, `Error: please provide a word between ${MIN_CHAR} and ${MAX_CHAR}`])
   }
   const words = getWords(WORDS_DIR, len)
 
   return getAnagram(str, words)
 }
 
+// wrap everything together
+function runAnagramProgram(arg) {
+  // V.2 we change this to a Promise interface
+  return anagram(arg)
+    .then(result => {
+      const [ word, tried ] = result
+      console.log(`We found the anagram for ${arg} > ${word}, after we guess ${tried} time${tried > 1 ? 's' : ''}`)
+    })
+    .catch(error => {
+      try {
+        // @TODO if there is an real error instead of the value we return
+        // this will not work correctly
+        const [result, tried] = error
+        if (result === false) {
+          console.error(`Sorry could not find anything, after try ${tried} times.`)
+        } else {
+          console.error(tried)
+        }
+      } catch(e) {
+        console.error(`An error occuried`, error)
+      }
+    })
+}
+
 // finally check if it's call from cmd or not
 if (require.main === module) {
   const args = process.argv.slice(2)
-  // could do a bit more wording hint etc, but that will be some other time
-  const result = Reflect.apply(anagram, null, args)
 
-  const [ word, tried ] = result;
-
-  if (word) {
-    console.log(`We found the anagram for ${args[0]} > ${word}, after we guess ${tried} time${tried > 1 ? 's' : ''}`)
-  } else {
-    console.error(`Sorry could not find anything, after try ${tried} times.`)
+  if (!args.length) {
+    return console.error(`You need to provide a word`)
   }
 
+  Reflect.apply(runAnagramProgram, null, args)
+
 } else {
-  // using name export
-  module.exports = { anagram }
+  // name export it again
+  module.exports = { anagram, runAnagramProgram }
 }

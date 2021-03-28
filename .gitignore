@@ -6,3 +6,5 @@ java/Test.java
 java/Test.class
 .idea
 anagram-example.iml
+
+pyhon/__pycache__/*

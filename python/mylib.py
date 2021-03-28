@@ -15,7 +15,7 @@ jsonData = json.load(jsonObj)
 
 def fisherYates(arr):
     """
-    Randomly rearrange an array using Fisher Yate algorithm
+    Randomly rearrange an array using Fisher Yates algorithm
     """
     ctn = len(arr)
     for i in range(0, ctn):
@@ -44,6 +44,7 @@ def getPossibleWord(str, triedWords):
     """
     possibleWord = scrambleWords(str)
     tempList = [x for x in triedWords if possibleWord in x]
+    print(f"triedWords array length: {len(triedWords)}")
     if (len(tempList) > 0):
         return getPossibleWord(str, triedWords)
 
@@ -71,10 +72,12 @@ def getAnagram(str, words):
     possibleWords = []
 
     while tried <= maxTried:
+        print(f"Tried number: {tried}")
         word = getPossibleWord(str, possibleWords)
         if (len([w for w in dict if w == word]) > 0):
             return word
+
         possibleWords.append(word)
         ++tried
 
-    return false
+    return False
