@@ -7,7 +7,7 @@ This is why we only limit the maximum letters long to 7.
 Even that it could have to calculate at least 5,040 times;
 It could be more because the random generator might came up with the same combination.
 
-To illustrate the problem, you can try the follow simple example (I was running this on a AMD 3500 4 cores 8 thread with 16GB ram machine)
+To illustrate the problem, you can try the follow simple example (I was running this on a AMD 3500 4 cores 8 threads with 16GB RAM machine)
 
 ```js
 const max = 100000
@@ -34,7 +34,7 @@ RangeError: Maximum call stack size exceeded
 ...
 ```
 
-What we could do is by wrapper the inner recursive call in a `setTimeout`
+What we could do is by wrap the inner recursive call in a `setTimeout`
 
 ```js
 
@@ -81,6 +81,6 @@ recursionOutter()
 
 ```
 
-Now you recursion function should run without that error.
-What happened is, when you use the `setTimeout` even with a 0 mil second,
-node.js will put that call on a stack, and clear the last stack before continue. Instead of what happened early, too many calls in one stack.
+Now the function should run without that error.
+What happened is, when you use the `setTimeout` even with a 0 mil second as timeout (delay),
+node.js will put that call on a stack, and clear the last stack before continue. Instead of what happened with the sync version, too many calls in one stack.
