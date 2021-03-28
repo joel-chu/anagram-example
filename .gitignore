@@ -8,3 +8,4 @@ java/Test.class
 anagram-example.iml
 
 python/__pycache__/*
+python/test.py

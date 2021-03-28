@@ -1,17 +1,19 @@
+import sys
 import math
 import random
 import json
 from pathlib import Path
-
-# this is just silly
+# prepare the configuration data
 p = Path(__file__)
-
 WORDS_DIR = p.parent.parent.joinpath('share')
-
 configFile = WORDS_DIR.joinpath('config.json')
 
 jsonObj = open(str(configFile))
 jsonData = json.load(jsonObj)
+# Get the number of maximum recursion calls
+maxReCall = sys.getrecursionlimit()
+
+# Functions
 
 def fisherYates(arr):
     """
@@ -41,6 +43,8 @@ def scrambleWords(str):
 def getPossibleWord(str, triedWords):
     """
     get a possible word that we haven't tried before
+    @BUG if this recursion run over 1000 times, it will throw error
+    becuase it reaches the system maximum
     """
     possibleWord = scrambleWords(str)
     tempList = [x for x in triedWords if possibleWord in x]
