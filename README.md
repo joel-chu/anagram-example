@@ -42,6 +42,20 @@ Run it like so:
 $ node ./js/anagram.js abort
 ```
 
+There is also another version call `main.js`. First you need to make the file execuatable:
+
+```sh
+$ chmod u+x js/main.js
+```
+
+Then just run it like this:
+
+```sh
+$ js/main.js
+```
+
+---
+
 For developers using Deepin 20.x system, you might want to take a look at this [note about setting up node.js](./doc/deepin-20.md) on your system.
 
 Also, I have written a [development change log](./doc/changelog.md) to explain more in depth about the why and how.  
