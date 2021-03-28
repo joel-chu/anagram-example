@@ -22,13 +22,37 @@ const WORDS_DIR = join(__dirname, '..', 'share')
  * @public
  */
 function anagram(str) {
-  const len = str.length;
+  const len = str.length
   if (len > MAX_CHAR || len < MIN_CHAR) {
-    return console.error(`Error: please provide a word between ${MIN_CHAR} and ${MAX_CHAR} `)
+    return Promise.reject([null, `Error: please provide a word between ${MIN_CHAR} and ${MAX_CHAR}`])
   }
   const words = getWords(WORDS_DIR, len)
 
   return getAnagram(str, words)
+}
+
+// wrap everything together
+function runAnagramProgram(arg) {
+  // V.2 we change this to a Promise interface
+  return anagram(arg)
+    .then(result => {
+      const [ word, tried ] = result
+      console.log(`We found the anagram for ${arg} > ${word}, after we guess ${tried} time${tried > 1 ? 's' : ''}`)
+    })
+    .catch(error => {
+      try {
+        // @TODO if there is an real error instead of the value we return
+        // this will not work correctly
+        const [result, tried] = error
+        if (result === false) {
+          console.error(`Sorry could not find anything, after try ${tried} times.`)
+        } else {
+          console.error(tried)
+        }
+      } catch(e) {
+        console.error(`An error occuried`, error)
+      }
+    })
 }
 
 // finally check if it's call from cmd or not
@@ -39,19 +63,9 @@ if (require.main === module) {
     return console.error(`You need to provide a word`)
   }
 
-  // V.2 we change this to a Promise interface
-  Reflect.apply(anagram, null, args)
-    .then(result => {
-      const [ word, tried ] = result;
-      console.log(`We found the anagram for ${args[0]} > ${word}, after we guess ${tried} time${tried > 1 ? 's' : ''}`)
-    })
-    .catch(error => {
-      console.log(typeof error, error)
+  Reflect.apply(runAnagramProgram, null, args)
 
-      const [, tried] = error
-      console.error(`Sorry could not find anything, after try ${tried} times.`)
-    })
 } else {
   // name export it again
-  module.exports = { anagram }
+  module.exports = { anagram, runAnagramProgram }
 }

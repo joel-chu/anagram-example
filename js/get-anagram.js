@@ -53,7 +53,6 @@ function getAnagramInner(str, dict, maxTry, _resolver = null, _rejecter = null, 
         }, 0)
       })
   } else {
-    console.log('exit', tried)
     // if we could not find anything then we just reject it
     _rejecter([false, tried])
   }
