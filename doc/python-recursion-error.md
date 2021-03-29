@@ -130,4 +130,4 @@ def getPossibleWord(str, triedWords, recursionLimit, i = 0):
 
 What happen is, in the function that call the  `getPossibleWord`. We just need it to
 be aware when the result return a `False` that means the recursion has reach it's limit.
-And skip one count, and call it again. Therefore, it create the same effects like what we describe above.
+And skip one count, and call it again. Therefore, it create the same effects like what we describe above.      mm
