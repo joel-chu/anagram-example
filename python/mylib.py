@@ -15,6 +15,20 @@ maxReCall = sys.getrecursionlimit()
 
 # Functions
 
+def getMaxTryNum(n, total = 0):
+    """
+    The old calculation was wrong, we need the total possible combination number
+    which is Xn ... X2 * X1 = total
+    """
+    if (n == 1):
+        return total
+    if (total == 0):
+        total = n
+    n -= 1
+    total *= n
+    return getMaxTryNum(n, total)
+
+
 def fisherYates(arr):
     """
     Randomly rearrange an array using Fisher Yates algorithm
@@ -53,6 +67,12 @@ def getPossibleWord(str, triedWords):
         return getPossibleWord(str, triedWords)
 
     return possibleWord
+
+def getPossibleWordInner(str, triedWords):
+    """
+    We need to split the original getPossibleWord method
+    into two parts to continue how many recursive loop its running
+    """
 
 
 def getWords(dir, name):
