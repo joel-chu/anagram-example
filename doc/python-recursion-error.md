@@ -86,7 +86,7 @@ result = runWrapper(units)
 print(f"result = {result}")
 ```
 
-Now your recursive function will run 5000 times in 6 calls without any error. 
+Now your recursive function will run 5000 times in 6 separate calls without any error. 
 The advantage of this approach is, you don't need to completely rewrite your recursive function, 
 just need to introduce new parameter, and a outer wrapper method to break it down. 
 And the refactor will introduce minimum disruption to your entire program.
