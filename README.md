@@ -7,7 +7,7 @@ In here, you will learn quite few things:
 
 - File access
 - JSON
-- Recursion
+- Recursion ([1](./doc/changelog.md) [2](./doc/python-recursion-error.md))
 - Threads
 - Process (node.js)
 - (List) Array operation
@@ -84,6 +84,13 @@ $ python/main.py
 
 It will prompt you for input.
 
+### RecursionError 
+
+If you have tried the V.1 of the python version, whenever you provide a 5 or more letters word, 
+You might run into the **RecursionError**. 
+
+You can [read this note](./doc/python-recursion-error.md) about how we fix the **RecursionError: maximum recursion depth exceeded in comparison**
+
 ## Java
 
 **Due to the <abbr title="Pain in your a**">PIA</abbr> nature of Java. You need to install [org.json.simple](https://code.google.com/archive/p/json-simple/) to your `CLASSPATH` before you can do anything with this code.**
@@ -98,37 +105,12 @@ Should give you a result.
 
 ## PHP
 
-It was develop using the latest PHP 8.x. You might have to install / upgrade first
+It was develop using the latest PHP 8.x. You might have to install / upgrade first.
+You can [read this note](./doc/php-installation.md) that we have tried and tested.
 
-### For Ubuntu
 
-```sh
-$ sudo add-apt-repository ppa:ondrej/php
-$ sudo apt-get update
-```
 
-### For Debian
 
-```sh
-$ sudo apt install apt-transport-https lsb-release ca-certificates wget -y
-$ sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
-$ sudo sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
-$ sudo apt update
-```
-For those using Deepin system, the `$(lsb_release -sc)` will return empty and make it not working.
-So you need to this instead (Assume your are running the latest Deepin 20 system)
-
-```shell script
-$ sudo sh -c 'echo "deb https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/php.list'
-```
-
-Then both system are the same:
-
-```shell script
-$ sudo apt install php8.0-common php8.0-cli -y
-$ php -v
-$ php -m
-```
 
 ---
 
