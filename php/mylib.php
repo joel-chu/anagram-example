@@ -65,12 +65,12 @@ function getPossibleWord($str, $triedWords) {
  * 2. Using expression - there is no way to pass a parameter to such function when array_filter calls the function
  *    which is a string (then PHP finds it for you if any)
  * Therefore need to create a closure method like this one
- * based on the https://stackoverflow.com/questions/5482989/php-array-filter-with-arguments/5483102#5483102 discussion
+ * based on this https://stackoverflow.com/questions/5482989/php-array-filter-with-arguments/5483102#5483102 discussion
  */
 function createFilterFn($str) {
   return function($w) use($str) {
     return $w != $str;
-  };
+  }; // <-- this is important!
 }
 
 

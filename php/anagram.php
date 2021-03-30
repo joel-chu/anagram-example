@@ -35,6 +35,7 @@ function main($word) {
   } else {
     echo "Sorry could not find anything";
   }
+  echo "\n";
 }
 
 // The $argv will present even the command line include this script
