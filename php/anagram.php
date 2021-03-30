@@ -1,6 +1,6 @@
 <?php
 chdir( dirname ( __FILE__ ) );
-require "./mylib.php";
+require("mylib.php");
 
 /**
  * The main method to get the anagram
@@ -8,13 +8,16 @@ require "./mylib.php";
  */
 function anagram($str) {
   $l = strlen($str);
+
+  $jsonData = $GLOBALS['jsonData'] ? $GLOBALS['jsonData'] : getJsonData();
+
   $max = $jsonData["MAX_CHAR"];
   $min = $jsonData["MIN_CHAR"];
 
   if ($l > $max || $l < $min) {
     echo "Error: please proide a word between $min and $max";
   } else {
-    $words = getWords();
+    $words = getWords($l, $jsonData);
 
     return getAnagram($str, $words);
   }
