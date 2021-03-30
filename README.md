@@ -84,10 +84,10 @@ $ python/main.py
 
 It will prompt you for input.
 
-### RecursionError 
+### RecursionError
 
-If you have tried the V.1 of the python version, whenever you provide a 5 or more letters word, 
-You might run into the **RecursionError**. 
+If you have tried the V.1 of the python version, whenever you provide a 5 or more letters word,
+You might run into the **RecursionError**.
 
 You can [read this note](./doc/python-recursion-error.md) about how we fix the **RecursionError: maximum recursion depth exceeded in comparison**
 
@@ -108,9 +108,20 @@ Should give you a result.
 It was develop using the latest PHP 8.x. You might have to install / upgrade first.
 You can [read this note](./doc/php-installation.md) that we have tried and tested.
 
+To run the onliner version:
 
+```php
+$ php php/anagram.php abort
+```
 
+If you want to run the interactive version then you first you need to do:
 
+```php
+$ chmod u+x php/main.php
+$ php/main.php
+```
+
+Then you should see the prompt.
 
 ---
 
