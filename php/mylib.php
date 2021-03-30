@@ -49,14 +49,15 @@ function getMaxTryNum($n, $total = 0) {
 
 /**
  * find a combination which not already tried
- *
+ * @return array 0.word 1.$i
  */
-function getPossibleWord($str, $triedWords) {
+function getPossibleWord($str, $triedWords, $i = 0) {
+  ++$i;
   $possibleWord = str_shuffle($str);
   if (in_array($possibleWord, $triedWords)) {
-    return getPossibleWord($str, $triedWords);
+    return getPossibleWord($str, $triedWords, $i);
   }
-  return $possibleWord;
+  return array($possibleWord, $i);
 }
 
 /**
@@ -70,37 +71,38 @@ function getPossibleWord($str, $triedWords) {
 function createFilterFn($str) {
   return function($w) use($str) {
     return $w != $str;
-  }; // <-- this is important!
+  }; // <-- this is important! because this is expression not statement
 }
-
 
 /**
  * The main method to get the Anagram
  *
  */
 function getAnagram($str, $words) {
+  $tried = 0;
   if (!in_array($str, $words)) {
-    return false;
+    return array(false, $tried);
   }
   // Throw a strange error said $str is undefined
   // if I use an anonymous function
   $filterFn = createFilterFn($str);
-
   $dict = array_filter($words, $filterFn);
 
   $maxTried = getMaxTryNum(strlen($str));
-  $tried = 0;
+  // placeholder
   $possibleWords = array();
 
   while ($tried <= $maxTried) {
-    $word = getPossibleWord($str, $possibleWords);
+    $result = getPossibleWord($str, $possibleWords);
+    $word = $result[0];
     if (in_array($word, $dict)) {
-      return $word;
+      // V1.5 we also want to return the tried number
+      return array($word, $tried, $result[1]);
     }
     array_push($possibleWords, $word);
     ++$tried;
   }
-  return false;
+  return array(false, $tried);
 }
 
 // pretty crappy way
