@@ -123,6 +123,13 @@ $ php/main.php
 
 Then you should see the prompt.
 
+###NOTES ON PHP8 PERFORMANCE
+
+Didn't encounter any stack overflow problem, unlike Java, Javacript (node.js) and Python. And the PHP version
+add couple extra counter to show how many tries was happening. Sometime for a 5 letters word the random string
+generator could calculate up to million times, but still only took a few mil second.
+That's really some performance improvement.
+
 __@TODO PHP 8 version__
 
 ---

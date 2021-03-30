@@ -51,8 +51,8 @@ function getMaxTryNum($n, $total = 0) {
  * find a combination which not already tried
  * @return array 0.word 1.$i
  */
-function getPossibleWord($str, $triedWords, $i = 0) {
-  ++$i;
+function getPossibleWord($str, $triedWords, $i) {
+  $i += 1;
   $possibleWord = str_shuffle($str);
   if (in_array($possibleWord, $triedWords)) {
     return getPossibleWord($str, $triedWords, $i);
@@ -91,10 +91,14 @@ function getAnagram($str, $words) {
   $maxTried = getMaxTryNum(strlen($str));
   // placeholder
   $possibleWords = array();
+  // we still need to provide the init value here
+  // because each time call the getPossible will reset it
+  $i = 0;
 
   while ($tried <= $maxTried) {
-    $result = getPossibleWord($str, $possibleWords);
+    $result = getPossibleWord($str, $possibleWords, $i);
     $word = $result[0];
+    $i += $result[1]; // that's the $i
     if (in_array($word, $dict)) {
       // V1.5 we also want to return the tried number
       return array($word, $tried, $result[1]);
