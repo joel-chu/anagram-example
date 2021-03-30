@@ -1,7 +1,15 @@
 #!/usr/bin/env php
-<?php 
-$w = "hello world!";
+<?php
+define('IN_SCRIPT', true);
+require('anagram.php');
 
-echo $w;
+// wrapper for interactive version
+function run() {
+  echo("Please provide a word: ");
+  $input = strtolower(trim(fgets(STDIN)));
+  main($input);
+}
+
+run();
 
 ?>

@@ -34,8 +34,14 @@ function main($word) {
   }
 }
 
-// @TODO how can we tell if it's calling from command line
-
-var_dump($jsonData);
-
+// The $argv will present even the command line include this script
+// therefore we need to add a variable from the callee to identify it
+if (!defined('IN_SCRIPT') && $argv) {
+  // should also check if there is a 1
+  if (count($argv) > 1) {
+    main($argv[1]);
+  } else {
+    echo "You need to provide a word";
+  }
+}
 ?>
