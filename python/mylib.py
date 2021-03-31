@@ -28,7 +28,7 @@ def getWords(dir, name):
 
     return fileContent.strip().split(' ')
 
-def getMaxTryNum(n, total = 0):
+def getTotalCombinationNum(n, total = 0):
     """
     The old calculation was wrong, we need the total possible combination number
     which is Xn ... X2 * X1 = total
@@ -39,7 +39,7 @@ def getMaxTryNum(n, total = 0):
         total = n
     n -= 1
     total *= n
-    return getMaxTryNum(n, total)
+    return getTotalCombinationNum(n, total)
 
 
 def fisherYates(arr):
@@ -114,6 +114,7 @@ def getAnagram(str, words):
     # filter out the provided word
     dict = [w for w in words if w != str]
     totalCombinationNum = getTotalCombinationNum(len(str))
+    guessTotal = 0
     tried = 0
     possibleWords = []
     # V.2 we move the while loop into the getPossibleWord
@@ -121,13 +122,15 @@ def getAnagram(str, words):
     while tried <= totalCombinationNum:
         # print(f"Tried number: {tried}")
         # V.2 we add maxTry parameter
-        word = getPossibleWord(str, possibleWords, totalCombinationNum, recursionLimit)
+        result = getPossibleWord(str, possibleWords, totalCombinationNum, recursionLimit)
+        word = result[0]
+        guessTotal += result[1]
         if (word in dict):
-            return word
+            return (word, tried, guessTotal)
         # if the word is False that just terminate because it reaches the maxTry
         # we don't count that as one try
         if (word):
             possibleWords.append(word)
             ++tried
 
-    return False
+    return (False, tried, guessTotal) # couldn't find anything that should be impossible

@@ -20,10 +20,11 @@ def main(word):
     wrapper method to hold everything together
     """
     result = anagram(word)
-    if result:
-        print(f"We found an angram for {word} > {result}")
+
+    if result[0]:
+        print(f"We found an angram for {word} > {result[0]} after {result[1]}({result[1]}) try")
     else:
-        print("Sorry could not find anything")
+        print(f"Sorry could not find anything, after {result[1]}({result[1]}) try")
 
 
 if __name__ == '__main__':

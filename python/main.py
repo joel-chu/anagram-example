@@ -10,7 +10,7 @@ def run():
     """
     print("Type quit() or press CTRL-C to exit")
     while (True):
-        print("Please give a word between 2~15 characters long")
+        print(f"Please give a word between {jsonData['MIN_CHAR']}~{jsonData['MAX_CHAR']} characters long")
         word = input("> ")
         if (word == "quit()"):
             exit(0)
