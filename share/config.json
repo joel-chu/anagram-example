@@ -1,5 +1,5 @@
 {
-  "MAX_CHAR": 7,
+  "MAX_CHAR": 8,
   "MIN_CHAR": 2,
   "POSSIBLE_MAX_CHAR": 15,
   "FILE_EXT": "txt",

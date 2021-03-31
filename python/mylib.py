@@ -28,7 +28,7 @@ def getWords(dir, name):
 
     return fileContent.strip().split(' ')
 
-def getMaxTryNum(n, total = 0):
+def getTotalCombinationNum(n, total = 0):
     """
     The old calculation was wrong, we need the total possible combination number
     which is Xn ... X2 * X1 = total
@@ -39,7 +39,7 @@ def getMaxTryNum(n, total = 0):
         total = n
     n -= 1
     total *= n
-    return getMaxTryNum(n, total)
+    return getTotalCombinationNum(n, total)
 
 
 def fisherYates(arr):
@@ -67,8 +67,20 @@ def scrambleWords(str):
 
     return ''.join(newArr)
 
+def getPossibleWord(str, triedWords, combTotal, recursionLimit, totalTry = 0):
+    """
+    We need to get around that maxium recursionError
+    """
+    result = getPossibleWordInner(str, triedWords, recursionLimit)
+    totalTry += result[1] # this is the i
+    word = result[0]
+    if (word == False): # which means it ended at the recursionLimit
+        return getPossibleWordInner(str, triedWords)
+    else:
+        return (word, totalTry)
 
-def getPossibleWord(str, triedWords, maxAllowTry, i = 0):
+
+def getPossibleWordInner(str, triedWords, maxAllowTry, i = 0):
     """
     get a possible word that we haven't tried before
     @BUG if this recursion run over 1000 (997 in fact) times,
@@ -78,7 +90,7 @@ def getPossibleWord(str, triedWords, maxAllowTry, i = 0):
     # if this interaction has reach the max allow number
     # we just terminate it and try in the next loop
     if (i >= maxAllowTry):
-        return False
+        return (False, i)
     i += 1
     # continue with guessing a word
     possibleWord = scrambleWords(str)
@@ -86,7 +98,8 @@ def getPossibleWord(str, triedWords, maxAllowTry, i = 0):
     if (possibleWord in triedWords):
         return getPossibleWord(str, triedWords, maxAllowTry, i)
 
-    return possibleWord
+    return (possibleWord, i)
+
 
 def getAnagram(str, words):
     """
@@ -97,24 +110,27 @@ def getAnagram(str, words):
     # otherwise there is no point of running the follow code
     exist = str in words
     if (not exist):
-        return exist
+        return (False, 0, 0) # the problem is here
     # filter out the provided word
     dict = [w for w in words if w != str]
-    maxTried = getMaxTryNum(len(str))
+    totalCombinationNum = getTotalCombinationNum(len(str))
+    guessTotal = 0
     tried = 0
     possibleWords = []
     # V.2 we move the while loop into the getPossibleWord
     # because we need to check the maximum allow loop in each call
-    while tried <= maxTried:
+    while tried <= totalCombinationNum:
         # print(f"Tried number: {tried}")
         # V.2 we add maxTry parameter
-        word = getPossibleWord(str, possibleWords, recursionLimit)
+        result = getPossibleWord(str, possibleWords, totalCombinationNum, recursionLimit)
+        word = result[0]
+        guessTotal += result[1]
         if (word in dict):
-            return word
+            return (word, tried, guessTotal)
         # if the word is False that just terminate because it reaches the maxTry
         # we don't count that as one try
         if (word):
             possibleWords.append(word)
             ++tried
 
-    return False
+    return (False, tried, guessTotal) # couldn't find anything that should be impossible

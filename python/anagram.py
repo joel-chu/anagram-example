@@ -20,10 +20,13 @@ def main(word):
     wrapper method to hold everything together
     """
     result = anagram(word)
-    if result:
-        print(f"We found an angram for {word} > {result}")
+    # strange error: TypeError: 'bool' object is not subscriptable
+    # if we do this: result[0] != False
+    foundWord = result[0]
+    if foundWord:
+        print(f"We found an angram for {word} > {foundWord} after {result[1]}({result[2]}) try")
     else:
-        print("Sorry could not find anything")
+        print(f"Sorry could not find anything, after {result[1]}({result[2]}) try")
 
 
 if __name__ == '__main__':

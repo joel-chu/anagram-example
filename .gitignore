@@ -10,4 +10,6 @@ anagram-example.iml
 python/__pycache__/*
 python/test.py
 
+kotlin/test.kt
+
 php/test.php
