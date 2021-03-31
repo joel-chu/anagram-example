@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-from anagram import main
+from anagram import main, jsonData
 
 # make this interactive
 

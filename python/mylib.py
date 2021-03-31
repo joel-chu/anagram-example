@@ -110,7 +110,7 @@ def getAnagram(str, words):
     # otherwise there is no point of running the follow code
     exist = str in words
     if (not exist):
-        return exist
+        return (False, 0, 0) # the problem is here
     # filter out the provided word
     dict = [w for w in words if w != str]
     totalCombinationNum = getTotalCombinationNum(len(str))
