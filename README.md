@@ -106,7 +106,7 @@ Should give you a result.
 ## PHP
 
 It was develop using the latest PHP 8.x. You might have to install / upgrade first.
-You can [read this note](./doc/php-installation.md) that we have tried and tested.
+You can [read this note](./doc/php-installation.md) about what we have tried and tested.
 
 To run the onliner version:
 
@@ -123,11 +123,11 @@ $ php/main.php
 
 Then you should see the prompt.
 
-###NOTES ON PHP8 PERFORMANCE
+### NOTES ON PHP8 PERFORMANCE
 
 Didn't encounter any stack overflow problem, unlike Java, Javacript (node.js) and Python. And the PHP version
-add couple extra counter to show how many tries was happening. Sometime for a 5 letters word the random string
-generator could calculate up to million times, but still only took a few mil second.
+add couple extra counter to show how many tries was happening. Sometime the random string
+generator (guessing a word) could calculate up to million times, but still only took a few mil second.
 That's really some performance improvement.
 
 __@TODO PHP 8 version__
