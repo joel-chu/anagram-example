@@ -1,6 +1,6 @@
 // we are spliting this part out on it's own
 // and make it run on it's own thread
-package examle.anagram;
+package example.anagram;
 
 import java.util.*;
 import example.anagram.*;
@@ -8,7 +8,7 @@ import example.anagram.*;
 class GetPossibleWord {
 
   private final ScrambleWords swObj;
-  private int maxTry
+  private int maxTry;
 
   public GetPossibleWord(String initString, int mt) {
     swObj = new ScrambleWords(initString);
@@ -27,10 +27,11 @@ class GetPossibleWord {
     String possibleWord = swObj.get();
 
     System.out.println("Tried times: " + triedWords.size());
+    ++i;
 
     if (triedWords.contains(possibleWord)) {
 
-      return getPossibleWordAction(str, triedWords);
+      return get(str, triedWords, i);
     }
 
     return possibleWord;

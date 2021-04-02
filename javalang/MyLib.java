@@ -68,6 +68,18 @@ public class MyLib {
     return wordList;
   }
 
+  // check if the supplied word can have an anagram
+  public Boolean wordHasAnagram(String str, String[] words) {
+    ArrayList<String> wordList = new ArrayList<>(Arrays.asList(words));
+    if (wordList.contains(str)) {
+
+      return true;
+    }
+
+    return false;
+  }
+
+
   // the main method to get the anagram
   public String getAnagram(String str, String[] words) {
     ArrayList<String> dict = filteredWords(str, words);
@@ -79,7 +91,7 @@ public class MyLib {
 
     while (tried <= maxTry) {
       System.out.println("tried: " + tried);
-
+      // @BUG here we might get a stackoverflow problem
       GetPossibleWord wordGetter = new GetPossibleWord(str, maxTry);
       String w = wordGetter.get(str, possibleWords, i);
 
