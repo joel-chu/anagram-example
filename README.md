@@ -91,17 +91,35 @@ You might run into the **RecursionError**.
 
 You can [read this note](./doc/python-recursion-error.md) about how we fix the **RecursionError: maximum recursion depth exceeded in comparison**
 
-## Java
+## Java (in the folder call javalang)
 
 **Due to the <abbr title="Pain in your a**">PIA</abbr> nature of Java. You need to install [org.json.simple](https://code.google.com/archive/p/json-simple/) to your `CLASSPATH` before you can do anything with this code.**
 
 Or you can download the source then use `ant` to build it. Put the `org` folder (not the `classes`, one level down) into the `/java` folder. Then it should work (Given that you haven't setup your `CLASSPATH`, it will be just `.`)
 
 ```sh
+$ cd javalang
 $ java Anagram abort
 ```
 
 Should give you a result.
+
+### Notes about why `javalang` not just `java`
+
+Basically I ran into this error:
+
+```
+Exception in thread "main" java.lang.SecurityException: Prohibited package name: java
+```
+
+Because I tried this:
+
+```
+$ java java/Test
+```
+
+And `java` thinks the package name is `java.Test`, and of course, it didn't like it. Also it doesn't really matter what you name your folder.
+If you try to execute the program from outside the folder, java will think you are calling a `Package`, and it will fail. Therefore, you must `cd` into that directory before you can do anything.
 
 ## PHP
 

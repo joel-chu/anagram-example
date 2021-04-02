@@ -8,9 +8,7 @@ import org.json.simple.JSONObject;
 public class MyLib {
 
   private JSONObject configObj;
-
   private MyFileReader reader;
-  private ScrambleWords swObj;
 
   private String[] dictWords;
 
@@ -27,28 +25,22 @@ public class MyLib {
     // prepare for use later
     maxChar = (long) configObj.get("MAX_CHAR");
     minChar = (long) configObj.get("MIN_CHAR");
-    // setup for reuse
-    swObj = new ScrambleWords(wordToTry);
+
   }
 
-  // find the possible word of anagram in a recursion
-  // the logic is
-  // 1. generate a random word from the str
-  // 2. check against the triedWords array if it's already tried
-  // 3. If it's already tried (record outside) then try another one
-  public String getPossibleWord(String str, ArrayList<String> triedWords) {
-    // String possibleWord = scrambleWords(str);
-    String possibleWord = swObj.getIt();
-
-    System.out.println("Tried times: " + triedWords.size());
-
-    if (triedWords.contains(possibleWord)) {
-
-      return getPossibleWord(str, triedWords);
+  // Get the total possible combinations
+  public static int getCombinationTotal(int n, int total) {
+    if (n == 1) {
+      return total;
     }
-
-    return possibleWord;
+    if (total == 0) {
+      total = n;
+    }
+    total = total * (n-1);
+    --n;
+    return getCombinationTotal(n, total);
   }
+
 
   // import the words file return as array
   public String[] getWords(String dir, String name) {
@@ -76,18 +68,32 @@ public class MyLib {
     return wordList;
   }
 
+  // check if the supplied word can have an anagram
+  public Boolean wordHasAnagram(String str, String[] words) {
+    ArrayList<String> wordList = new ArrayList<>(Arrays.asList(words));
+    if (wordList.contains(str)) {
+
+      return true;
+    }
+
+    return false;
+  }
+
+
   // the main method to get the anagram
   public String getAnagram(String str, String[] words) {
     ArrayList<String> dict = filteredWords(str, words);
     int len = dict.size();
-    int maxTry = (int)Math.pow(2, len);
+    int maxTry = getCombinationTotal(len, 0);
     int tried = 0;
+    int i = 0;
     ArrayList<String> possibleWords = new ArrayList<>();
 
     while (tried <= maxTry) {
-      System.out.println("tried: " + tried);
-
-      String w = getPossibleWord(str, possibleWords);
+      // System.out.println("tried: " + tried);
+      // @BUG here we might get a stackoverflow problem
+      GetPossibleWord wordGetter = new GetPossibleWord(str, maxTry);
+      String w = wordGetter.get(str, possibleWords, i);
 
       if (dict.contains(w)) {
 
