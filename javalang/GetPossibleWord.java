@@ -1,6 +1,7 @@
 // we are spliting this part out on it's own
 // and make it run on it's own thread
 package examle.anagram;
+
 import java.util.*;
 import example.anagram.*;
 
@@ -8,8 +9,8 @@ class GetPossibleWord {
 
   private final ScrambleWords swObj;
 
-  public GetPossibleWord(ScrambleWords obj) {
-    swObj = obj;
+  public GetPossibleWord(String initString) {
+    swObj = new ScrambleWords(initString);
   }
 
   /**
@@ -19,9 +20,9 @@ class GetPossibleWord {
    * 2. check against the triedWords array if it's already tried
    * 3. If it's already tried (record outside) then try another one
    */
-  public String getPossibleWordAction(String str, ArrayList<String> triedWords, int maxTryAllow, int i) {
+  public String get(String str, ArrayList<String> triedWords, int maxTryAllow, int i) {
     // String possibleWord = scrambleWords(str);
-    String possibleWord = swObj.getIt();
+    String possibleWord = swObj.get();
 
     System.out.println("Tried times: " + triedWords.size());
 

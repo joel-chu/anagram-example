@@ -15,7 +15,7 @@ public class ScrambleWords {
   }
 
   // the main call to get the scrambled word
-  public String getIt() {
+  public String get() {
     // need to turn the char[] into String[] before we can use
     String[] usableStrArr = stringToStringArray(wordToScramble);
     String[] newCharArray = fisherYates(usableStrArr);
@@ -61,7 +61,7 @@ public class ScrambleWords {
     for (int i = 0; i < c; i++) {
       data.add(String.valueOf(f[i]));
     }
-    
+
     return getStringArray(data);
   }
 

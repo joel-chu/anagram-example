@@ -8,9 +8,7 @@ import org.json.simple.JSONObject;
 public class MyLib {
 
   private JSONObject configObj;
-
   private MyFileReader reader;
-  private ScrambleWords swObj;
 
   private String[] dictWords;
 
@@ -27,27 +25,7 @@ public class MyLib {
     // prepare for use later
     maxChar = (long) configObj.get("MAX_CHAR");
     minChar = (long) configObj.get("MIN_CHAR");
-    // setup for reuse
-    swObj = new ScrambleWords(wordToTry);
-  }
 
-  // find the possible word of anagram in a recursion
-  // the logic is
-  // 1. generate a random word from the str
-  // 2. check against the triedWords array if it's already tried
-  // 3. If it's already tried (record outside) then try another one
-  public String getPossibleWord(String str, ArrayList<String> triedWords) {
-    // String possibleWord = scrambleWords(str);
-    String possibleWord = swObj.getIt();
-
-    System.out.println("Tried times: " + triedWords.size());
-
-    if (triedWords.contains(possibleWord)) {
-
-      return getPossibleWord(str, triedWords);
-    }
-
-    return possibleWord;
   }
 
   // import the words file return as array
@@ -87,7 +65,8 @@ public class MyLib {
     while (tried <= maxTry) {
       System.out.println("tried: " + tried);
 
-      String w = getPossibleWord(str, possibleWords);
+      GetPossibleWord wordGetter = new GetPossibleWord(str);
+      String w = wordGetter.get(str, possibleWords);
 
       if (dict.contains(w)) {
 
