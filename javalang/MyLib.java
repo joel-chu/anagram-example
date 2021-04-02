@@ -28,6 +28,20 @@ public class MyLib {
 
   }
 
+  // Get the total possible combinations
+  public static int getCombinationTotal(int n, int total) {
+    if (n == 1) {
+      return total;
+    }
+    if (total == 0) {
+      total = n;
+    }
+    total = total * (n-1);
+    --n;
+    return getCombinationTotal(n, total);
+  }
+
+
   // import the words file return as array
   public String[] getWords(String dir, String name) {
     String fileExt = String.valueOf(configObj.get("FILE_EXT"));
@@ -58,15 +72,16 @@ public class MyLib {
   public String getAnagram(String str, String[] words) {
     ArrayList<String> dict = filteredWords(str, words);
     int len = dict.size();
-    int maxTry = (int)Math.pow(2, len);
+    int maxTry = getCombinationTotal(len, 0);
     int tried = 0;
+    int i = 0;
     ArrayList<String> possibleWords = new ArrayList<>();
 
     while (tried <= maxTry) {
       System.out.println("tried: " + tried);
 
-      GetPossibleWord wordGetter = new GetPossibleWord(str);
-      String w = wordGetter.get(str, possibleWords);
+      GetPossibleWord wordGetter = new GetPossibleWord(str, maxTry);
+      String w = wordGetter.get(str, possibleWords, i);
 
       if (dict.contains(w)) {
 

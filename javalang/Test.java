@@ -1,38 +1,28 @@
 
-public class Test {
+
+class Test {
 
   public static void main(String[] args) {
-    String str = args[0];
-    int count = 0;
 
-    Thread t = new Thread(() ->
-      someFuncToRun(str, count, (value) -> {
-        System.out.println(value);
-        return value;
-      }));
+    int input = Integer.valueOf(args[0]);
 
-    t.start();
+    int total = getCombinationTotal(input, 0);
+
+    System.out.println(total);
+
   }
 
-  public static String someFuncToRun(String str, int ctn, Promise p) {
-    ++ctn;
-    if (ctn == 10) {
-      System.out.println("End here");
-      return p.cb("end");
+
+  public static int getCombinationTotal(int n, int total) {
+    if (n == 1) {
+      return total;
     }
-    System.out.println(ctn + " times");
-    return someFuncToRun(str + " +1", ctn, p);
+    if (total == 0) {
+      total = n;
+    }
+    total = total * (n-1);
+    --n;
+    return getCombinationTotal(n, total);
   }
-}
 
-
-interface Promise {
-    public String cb(String a);
 }
-
-/*
-//elsewhere:
-static int method(TwoArgIntOperator operator) {
-    return operator.op(5, 10);
-}
-*/
