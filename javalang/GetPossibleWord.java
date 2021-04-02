@@ -26,7 +26,7 @@ class GetPossibleWord {
     // String possibleWord = scrambleWords(str);
     String possibleWord = swObj.get();
 
-    System.out.println("Tried times: " + triedWords.size());
+    // System.out.println("Tried times: " + triedWords.size());
     ++i;
 
     if (triedWords.contains(possibleWord)) {

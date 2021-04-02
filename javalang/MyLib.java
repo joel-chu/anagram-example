@@ -90,7 +90,7 @@ public class MyLib {
     ArrayList<String> possibleWords = new ArrayList<>();
 
     while (tried <= maxTry) {
-      System.out.println("tried: " + tried);
+      // System.out.println("tried: " + tried);
       // @BUG here we might get a stackoverflow problem
       GetPossibleWord wordGetter = new GetPossibleWord(str, maxTry);
       String w = wordGetter.get(str, possibleWords, i);
