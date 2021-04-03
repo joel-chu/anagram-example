@@ -1,4 +1,4 @@
-import example.anagram.Callback;
+import example.anagram.*;
 
 class Test {
 
@@ -8,7 +8,19 @@ class Test {
 
     int total = getCombinationTotal(input, 0);
 
-    System.out.println(total);
+    // System.out.println(total);
+
+    PubSub<int> ps = new PubSub();
+
+    ps.sub((value) -> {
+
+      System.out.println("Getting value from the sub");
+      System.out.println(value);
+
+      return value;
+    });
+
+    ps.pub(total);
 
   }
 
@@ -23,21 +35,6 @@ class Test {
     total = total * (n-1);
     --n;
     return getCombinationTotal(n, total);
-  }
-
-}
-
-
-class PubSub<T> {
-
-  private T sub;
-
-  public void PubSub(Callback c) {
-    sub = c;
-  }
-
-  public void pub(T value) {
-    sub.cb(value);
   }
 
 }

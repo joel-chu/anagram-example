@@ -26,20 +26,3 @@ public class LambdaExample {
     return someFuncToRun(str + " +1", ctn, p);
   }
 }
-
-/* it just ridiculos
-class PubSub<T> {
-
-  private Callback<T> cb;
-
-  public void PubSub() {}
-
-  public void sub(Callback<T> c) {
-    cb = c;
-  }
-
-  public T pub(T value) {
-    return cb.cb(value);
-  }
-}
-*/
