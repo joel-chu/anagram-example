@@ -3,7 +3,7 @@ package example.anagram;
 
 import example.anagram.Callback;
 
-class PubSub<T> {
+public class PubSub<T> {
 
   private Callback<T> cb;
 

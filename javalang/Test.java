@@ -1,4 +1,4 @@
-import example.anagram.*;
+import example.anagram.PubSub;
 
 class Test {
 
@@ -10,7 +10,7 @@ class Test {
 
     // System.out.println(total);
 
-    PubSub<int> ps = new PubSub();
+    PubSub<Integer> ps = new PubSub<Integer>();
 
     ps.sub((value) -> {
 
