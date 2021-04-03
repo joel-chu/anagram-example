@@ -1,4 +1,6 @@
 
+import example.anagram.Callback;
+
 public class LambdaExample {
 
   public static void main(String[] args) {
@@ -14,25 +16,13 @@ public class LambdaExample {
     t.start();
   }
 
-  public static String someFuncToRun(String str, int ctn, Promise p) {
+  public static String someFuncToRun(String str, int ctn, Callback<String> cb) {
     ++ctn;
     if (ctn == 10) {
       System.out.println("End here");
-      return p.cb("end");
+      return cb.cb("end");
     }
     System.out.println(ctn + " times");
-    return someFuncToRun(str + " +1", ctn, p);
+    return someFuncToRun(str + " +1", ctn, cb);
   }
 }
-
-
-interface Promise {
-    public String cb(String a);
-}
-
-/*
-//elsewhere:
-static int method(TwoArgIntOperator operator) {
-    return operator.op(5, 10);
-}
-*/
