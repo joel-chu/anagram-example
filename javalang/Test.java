@@ -1,4 +1,4 @@
-
+import example.anagram.Callback;
 
 class Test {
 
@@ -23,6 +23,21 @@ class Test {
     total = total * (n-1);
     --n;
     return getCombinationTotal(n, total);
+  }
+
+}
+
+
+class PubSub<T> {
+
+  private T sub;
+
+  public void PubSub(Callback c) {
+    sub = c;
+  }
+
+  public void pub(T value) {
+    sub.cb(value);
   }
 
 }
