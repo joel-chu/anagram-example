@@ -55,7 +55,8 @@ function MyPromise(fn) {
     reject(e)
   }
 }
-
+// Note even the V.2 doesn't have the catch method
+// that will be something for development then
 // create the then method
 MyPromise.prototype.then = function(onFullfilled, onRejected) {
   const that = this
@@ -161,3 +162,5 @@ MyPromise.prototype.then = function(onFullfilled, onRejected) {
     }
   }
 }
+
+module.exports = { MyPromise }
