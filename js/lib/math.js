@@ -6,7 +6,7 @@
  * @param {int} total to hold the total number
  * @return {int} the total possible combination
  */
-function getCombinationTotal(n, total = 0) {
+function getCombinationTotalRec(n, total = 0) {
     // exit cause
     if (n === 1) {
        return total
@@ -17,9 +17,25 @@ function getCombinationTotal(n, total = 0) {
     }
     n--
     total *= n
-    return getCombinationTotal(n, total)
+    return getCombinationTotalRec(n, total)
 }
 
+/**
+ * FRP version with nicer syntax
+ * @param {int} n the last number
+ */
+function getCombinationTotalFrp(n) {
+  // there is no range method in js yet
+  // from: https://stackoverflow.com/questions/48892536/javascript-array-range
+  const arr = Array.from({length: n + 1}, (_, i) => i)
+  arr.shift()
+
+  console.log(arr)
+
+  return arr.reduce((a, b) => a * b, 1)
+}
+
+// expor the frp version
 module.exports = {
-    getCombinationTotal
+    getCombinationTotal: getCombinationTotalFrp
 }
