@@ -1,4 +1,4 @@
-
+import example.anagram.PubSub;
 
 class Test {
 
@@ -8,7 +8,19 @@ class Test {
 
     int total = getCombinationTotal(input, 0);
 
-    System.out.println(total);
+    // System.out.println(total);
+
+    PubSub<Integer> ps = new PubSub<Integer>();
+
+    ps.sub((value) -> {
+
+      System.out.println("Getting value from the sub");
+      System.out.println(value);
+
+      return value;
+    });
+
+    ps.pub(total);
 
   }
 

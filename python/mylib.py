@@ -28,10 +28,11 @@ def getWords(dir, name):
 
     return fileContent.strip().split(' ')
 
-def getTotalCombinationNum(n, total = 0):
+def getTotalCombinationNumRecursion(n, total = 0):
     """
     The old calculation was wrong, we need the total possible combination number
     which is Xn ... X2 * X1 = total
+    This example to actually show you the math inside
     """
     if (n == 1):
         return total
@@ -39,8 +40,21 @@ def getTotalCombinationNum(n, total = 0):
         total = n
     n -= 1
     total *= n
-    return getTotalCombinationNum(n, total)
+    return getTotalCombinationNumRecursion(n, total)
 
+def getTotalCombinationNumFrp():
+    """
+    Same result as above but using a FRP style
+    Although we get the same result but this one it's harder to know the math 
+    """
+
+    return num
+
+def getTotalCombinationNum(n):
+    """
+    wrapper method
+    """
+    return getTotalCombinationNumFrp(n)
 
 def fisherYates(arr):
     """
