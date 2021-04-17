@@ -13,5 +13,7 @@ python/*.pyc
 python/.pytest.cache 
 
 kotlin/test.kt
+kotlin/anagram.jar
+kotlin/exp/*
 
 php/test.php

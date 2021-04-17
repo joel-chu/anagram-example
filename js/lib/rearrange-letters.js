@@ -4,7 +4,7 @@
  * create combination based on it's possibility
  * therefore we rename it to rearrangeLetters instead
  */
-const { fisherYates } = require('./fisher-yates')
+const { fisherYates, shuffle } = require('./fisher-yates')
 
 
 /**
@@ -13,5 +13,5 @@ const { fisherYates } = require('./fisher-yates')
  * @return {string} scrambled character string
  */
 exports.rearrangeLetters = function(str) {
-  return fisherYates(str.split('')).join('')
+  return shuffle(str.split('')).join('')
 }
