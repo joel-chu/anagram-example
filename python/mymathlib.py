@@ -1,4 +1,6 @@
 # math related methods put here
+from functools import reduce
+
 def getTotalCombinationNumRecursion(n, total = 0):
     """
     The old calculation was wrong, we need the total possible combination number

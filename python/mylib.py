@@ -95,6 +95,6 @@ def getAnagram(str, words):
         # we don't count that as one try
         if (word):
             possibleWords.append(word)
-            tried++
+            tried += 1
 
     return (False, tried, guessTotal) # couldn't find anything that should be impossible

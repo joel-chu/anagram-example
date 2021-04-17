@@ -27,8 +27,10 @@ def shuffle(arr):
     A more frp style approach to solve the same problem
     """
     x = slice(0,  len(arr))
+    arr1 = arr[x]
+    arr1.sort(key = rand)
 
-    return arr[x].sort(key = rand)
+    return arr1
 
 def scrambleWords(str):
     """
