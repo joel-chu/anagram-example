@@ -2,6 +2,9 @@ import sys
 import math
 import random
 import json
+
+
+from functools import reduce
 from pathlib import Path
 # prepare the configuration data
 p = Path(__file__)
@@ -42,13 +45,14 @@ def getTotalCombinationNumRecursion(n, total = 0):
     total *= n
     return getTotalCombinationNumRecursion(n, total)
 
-def getTotalCombinationNumFrp():
+def getTotalCombinationNumFrp(n):
     """
     Same result as above but using a FRP style
-    Although we get the same result but this one it's harder to know the math 
+    Although we get the same result but this one it's harder to know the math
     """
+    arr = range(1, n + 1)
 
-    return num
+    return reduce(lambda x, y: x * y, arr, 1)
 
 def getTotalCombinationNum(n):
     """
