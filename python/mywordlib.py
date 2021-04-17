@@ -15,11 +15,20 @@ def fisherYates(arr):
 
     return arr
 
-def shuffleArray(arr):
+def rand(n):
+    """
+    return a random index
+    """
+
+    return random.random() - 0.5
+
+def shuffle(arr):
     """
     A more frp style approach to solve the same problem
     """
+    x = slice(0,  len(arr))
 
+    return arr[x].sort(key = rand)
 
 def scrambleWords(str):
     """
@@ -29,6 +38,6 @@ def scrambleWords(str):
     using comprehension
     """
     arr = [ch for ch in str]
-    newArr = fisherYates(arr)
+    newArr = shuffle(arr)
 
     return ''.join(newArr)

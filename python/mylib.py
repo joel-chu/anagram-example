@@ -1,7 +1,9 @@
 import sys
 import json
 from pathlib import Path
+
 from mymathlib import getTotalCombinationNum
+from mywordlib import scrambleWords
 
 # prepare the configuration data
 p = Path(__file__)

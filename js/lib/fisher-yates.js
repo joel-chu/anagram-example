@@ -22,6 +22,7 @@ exports.fisherYates = function(arr) {
 
 /**
  * in javascript we could do the same thing so much easier
+ * using the slice is because we don't want to temper with the original array
  * @param {array} arr input array
  * @return {array} randomized array
  */
