@@ -1,5 +1,8 @@
 import sys
 import json
+
+
+from functools import reduce
 from pathlib import Path
 
 from mymathlib import getTotalCombinationNum
@@ -30,7 +33,7 @@ def getWords(dir, name):
 
     return fileContent.strip().split(' ')
 
-
+  
 def getPossibleWord(str, triedWords, combTotal, recursionLimit, totalTry = 0):
     """
     We need to get around that maxium recursionError
