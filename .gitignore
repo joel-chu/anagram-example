@@ -9,7 +9,11 @@ anagram-example.iml
 
 python/__pycache__/*
 python/test.py
+python/*.pyc
+python/.pytest.cache 
 
 kotlin/test.kt
+kotlin/anagram.jar
+kotlin/exp/*
 
 php/test.php

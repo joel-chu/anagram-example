@@ -91,7 +91,7 @@ You might run into the **RecursionError**.
 
 You can [read this note](./doc/python-recursion-error.md) about how we fix the **RecursionError: maximum recursion depth exceeded in comparison**
 
-## Java (in the folder call javalang / javalangV2)
+## Java (in the folder call javalang)
 
 **Due to the <abbr title="Pain in your a**">PIA</abbr> nature of Java. You need to install [org.json.simple](https://code.google.com/archive/p/json-simple/) to your `CLASSPATH` before you can do anything with this code.**
 
@@ -120,11 +120,6 @@ $ java java/Test
 
 And `java` thinks the package name is `java.Test`, and of course, it didn't like it. Also it doesn't really matter what you name your folder.
 If you try to execute the program from outside the folder, java will think you are calling a `Package`, and it will fail. Therefore, you must `cd` into that directory before you can do anything.
-
-### Java (lang) V.2
-
-Version 2 is written in a observable pattern using Threads. You can see the structure is very different, and
-in fact, closer to what a real world application looks like.
 
 ## PHP
 
@@ -163,7 +158,7 @@ Coming soon
 
 ## Deno (Typescript)
 
-Coming soon 
+Coming soon
 
 ## Using Docker file
 

@@ -1,8 +1,13 @@
 import sys
-import math
-import random
 import json
+
+
+from functools import reduce
 from pathlib import Path
+
+from mymathlib import getTotalCombinationNum
+from mywordlib import scrambleWords
+
 # prepare the configuration data
 p = Path(__file__)
 WORDS_DIR = p.parent.parent.joinpath('share')
@@ -28,59 +33,7 @@ def getWords(dir, name):
 
     return fileContent.strip().split(' ')
 
-def getTotalCombinationNumRecursion(n, total = 0):
-    """
-    The old calculation was wrong, we need the total possible combination number
-    which is Xn ... X2 * X1 = total
-    This example to actually show you the math inside
-    """
-    if (n == 1):
-        return total
-    if (total == 0):
-        total = n
-    n -= 1
-    total *= n
-    return getTotalCombinationNumRecursion(n, total)
-
-def getTotalCombinationNumFrp():
-    """
-    Same result as above but using a FRP style
-    Although we get the same result but this one it's harder to know the math 
-    """
-
-    return num
-
-def getTotalCombinationNum(n):
-    """
-    wrapper method
-    """
-    return getTotalCombinationNumFrp(n)
-
-def fisherYates(arr):
-    """
-    Randomly rearrange an array using Fisher Yates algorithm
-    """
-    ctn = len(arr)
-    for i in range(0, ctn):
-        j = math.floor(random.random() * (i + 1))
-        temp = arr[i]
-        arr[i] = arr[j]
-        arr[j] = temp
-
-    return arr
-
-def scrambleWords(str):
-    """
-    scramble the characters
-    although in python string is also array but it does not
-    allow assignment, therefore we still need to turn it into a list
-    using comprehension
-    """
-    arr = [ch for ch in str]
-    newArr = fisherYates(arr)
-
-    return ''.join(newArr)
-
+  
 def getPossibleWord(str, triedWords, combTotal, recursionLimit, totalTry = 0):
     """
     We need to get around that maxium recursionError
@@ -145,6 +98,6 @@ def getAnagram(str, words):
         # we don't count that as one try
         if (word):
             possibleWords.append(word)
-            ++tried
+            tried += 1
 
     return (False, tried, guessTotal) # couldn't find anything that should be impossible
