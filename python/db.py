@@ -8,7 +8,7 @@ from sys import argv
 from mylib import WORDS_DIR, jsonData, getWords
 import sqlite3
 
-con = sqlite3.connect('../share/anagram.db')
+con = sqlite3.connect('../share/anagrams.db')
 
 def getCharSeq(word):
     """
@@ -59,8 +59,8 @@ def getAnagramData(word):
 def readTable(l = 2):
     cur = con.cursor()
     print(l)
-    for row in cur.execute("SELECT * FROM anagrams WHERE length(word) = ?", (l)):
-        print(row)
+    for row in cur.execute("SELECT * FROM anagrams WHERE length(word) = ?", (int(l),)):
+        print(row[0])
 
 # con.close() <-- just keep it open
 
@@ -76,4 +76,4 @@ if __name__ == '__main__':
         for row in cur.execute("SELECT * FROM anagrams"):
             print(row)
     else:
-        print(getCharSeq(cmd))
+        readTable(cmd)
