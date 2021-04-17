@@ -19,3 +19,10 @@ exports.fisherYates = function(arr) {
   
     return arr
 }
+
+/**
+ * in javascript we could do the same thing so much easier
+ * @param {array} arr input array
+ * @return {array} randomized array
+ */
+exports.shuffle = arr => arr.slice().sort(() => Math.random() - 0.5)

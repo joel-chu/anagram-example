@@ -12,5 +12,6 @@ python/test.py
 
 kotlin/test.kt
 kotlin/anagram.jar
+kotlin/exp/*
 
 php/test.php
