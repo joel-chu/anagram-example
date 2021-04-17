@@ -4,9 +4,10 @@
 # word (the original word)
 # characters (take the word apart then sort the characters in desc order)
 # len (the length of the word)
-
+from sys import argv
 from mylib import WORDS_DIR, jsonData, getWords
 import sqlite3
+
 con = sqlite3.connect('../share/anagram.db')
 
 def getCharSeq(word):
@@ -14,8 +15,9 @@ def getCharSeq(word):
     input the possible world and sort the character by A-Z
     """
     seq = [ch for ch in word]
+    seq.sort()
 
-    return seq.sort()
+    return ''.join(seq)
 
 def initTable():
     """
@@ -54,6 +56,12 @@ def getAnagramData(word):
     # loop that later
     return cur.execute(find_sql, (seq))
 
+def readTable(l = 2):
+    cur = con.cursor()
+    print(l)
+    for row in cur.execute("SELECT * FROM anagrams WHERE length(word) = ?", (l)):
+        print(row)
+
 # con.close() <-- just keep it open
 
 if __name__ == '__main__':
@@ -63,3 +71,9 @@ if __name__ == '__main__':
     """
     if (cmd == "init"):
         initTable()
+    elif(cmd == "all"):
+        cur = con.cursor()
+        for row in cur.execute("SELECT * FROM anagrams"):
+            print(row)
+    else:
+        print(getCharSeq(cmd))
