@@ -5,11 +5,11 @@
 # characters (take the word apart then sort the characters in desc order)
 # len (the length of the word)
 import sqlite3
-con = sqlite3.connect('../share/anagram.db')
+con = sqlite3.connect('../../share/anagram.db')
 
 cur = con.cursor()
 
-# execute many query at once 
+# execute many query at once
 
 purchases = [('2006-03-28', 'BUY', 'IBM', 1000, 45.00),
              ('2006-04-05', 'BUY', 'MSFT', 1000, 72.00),
