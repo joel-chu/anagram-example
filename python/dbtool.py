@@ -12,7 +12,7 @@ from sys import argv
 # need to use importlib to import these
 
 from mylib.main import WORDS_DIR, jsonData, getWords
-
+from mylib.deco import timer_decorator
 
 con = sqlite3.connect('../share/anagrams.db')
 
@@ -25,6 +25,8 @@ def getCharSeq(word):
 
     return ''.join(seq)
 
+# try the decorator again
+@timer_decorator
 def initTable():
     """
     prepare the input data
@@ -35,7 +37,7 @@ def initTable():
     cur.execute(create_table_sql)
     con.commit()
 
-    max = jsonData['MAX_CHAR']
+    max = 15 # jsonData['MAX_CHAR'] don't need this restriction
     min = jsonData['MIN_CHAR']
     allFiles = range(min, max + 1)
     # @NOTE if we only use `range`  it throws a `TypeError: cannot unpack non-iterable int object`
@@ -77,9 +79,11 @@ if __name__ == '__main__':
     """
     if (cmd == "init"):
         initTable()
-    elif(cmd == "all"):
+    elif (cmd == "all"):
         cur = con.cursor()
         for row in cur.execute("SELECT * FROM anagrams"):
             print(row)
     else:
         readTable(cmd)
+    # finally close the connections
+    con.close()
