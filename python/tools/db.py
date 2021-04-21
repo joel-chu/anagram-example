@@ -4,9 +4,14 @@
 # word (the original word)
 # characters (take the word apart then sort the characters in desc order)
 # len (the length of the word)
-from sys import argv
-from mylib import WORDS_DIR, jsonData, getWords
 import sqlite3
+import importlib
+
+from sys import argv
+
+# need to use importlib to import these 
+from mylib import WORDS_DIR, jsonData, getWords
+
 
 con = sqlite3.connect('../../share/anagrams.db')
 

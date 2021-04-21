@@ -1,16 +1,16 @@
 import sys
 import json
 
-
 from functools import reduce
 from pathlib import Path
 
-from mymathlib import getTotalCombinationNum
-from mywordlib import scrambleWords
+from mylib.algo import getTotalCombinationNum
+from mylib.word import scrambleWords
 
 # prepare the configuration data
 p = Path(__file__)
-WORDS_DIR = p.parent.parent.joinpath('share')
+# @TODO this is getting really silly need to pass this via a param
+WORDS_DIR = p.parent.parent.parent.joinpath('share')
 configFile = WORDS_DIR.joinpath('config.json')
 
 jsonObj = open(str(configFile))
