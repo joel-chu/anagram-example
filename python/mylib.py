@@ -21,6 +21,9 @@ jsonData = json.load(jsonObj)
 # recursion stop at 997
 recursionLimit = sys.getrecursionlimit() * 0.9
 
+# decorator import
+import mydeco
+
 # Functions
 
 def getWords(dir, name):
@@ -33,7 +36,7 @@ def getWords(dir, name):
 
     return fileContent.strip().split(' ')
 
-  
+
 def getPossibleWord(str, triedWords, combTotal, recursionLimit, totalTry = 0):
     """
     We need to get around that maxium recursionError
@@ -67,7 +70,8 @@ def getPossibleWordInner(str, triedWords, maxAllowTry, i = 0):
 
     return (possibleWord, i)
 
-
+# need to decorator the function when we declare the function
+@timer_decorator
 def getAnagram(str, words):
     """
     find the anagram from the input str

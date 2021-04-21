@@ -1,6 +1,6 @@
 from sys import argv
-
 from mylib import WORDS_DIR, jsonData, getWords, getAnagram
+
 
 def anagram(str):
     """

@@ -25,7 +25,7 @@ def initTable():
     """
     cur = con.cursor()
     # only the minimum setup just use the rowid if required
-    create_table_sql = "CREATE TABLE IF NOT EXISTS anagrams (word TEXT, charseq TEXT, desc TEXT)"
+    create_table_sql = "CREATE TABLE IF NOT EXISTS anagrams (word TEXT, charseq TEXT, dict TEXT)"
     cur.execute(create_table_sql)
     con.commit()
 
