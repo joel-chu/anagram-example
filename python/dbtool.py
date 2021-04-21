@@ -9,11 +9,12 @@ import importlib
 
 from sys import argv
 
-# need to use importlib to import these 
-from mylib import WORDS_DIR, jsonData, getWords
+# need to use importlib to import these
+
+from mylib.main import WORDS_DIR, jsonData, getWords
 
 
-con = sqlite3.connect('../../share/anagrams.db')
+con = sqlite3.connect('../share/anagrams.db')
 
 def getCharSeq(word):
     """
