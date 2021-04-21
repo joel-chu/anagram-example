@@ -9,8 +9,7 @@ import importlib
 
 from sys import argv
 
-# need to use importlib to import these
-
+# See the import is different
 from mylib.main import WORDS_DIR, jsonData, getWords
 from mylib.deco import timer_decorator
 
