@@ -21,8 +21,8 @@ jsonData = json.load(jsonObj)
 # recursion stop at 997
 recursionLimit = sys.getrecursionlimit() * 0.9
 
-# decorator import
-import mydeco
+# decorator import (note we need to explictly name the import)
+# from mydeco import timer_decorator
 
 # Functions
 
@@ -71,7 +71,9 @@ def getPossibleWordInner(str, triedWords, maxAllowTry, i = 0):
     return (possibleWord, i)
 
 # need to decorator the function when we declare the function
-@timer_decorator
+# something fucks up, it crash the function when using decorator
+# Error: TypeError: 'NoneType' object is not callable
+# @timer_decorator
 def getAnagram(str, words):
     """
     find the anagram from the input str
