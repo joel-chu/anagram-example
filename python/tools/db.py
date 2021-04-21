@@ -8,7 +8,7 @@ from sys import argv
 from mylib import WORDS_DIR, jsonData, getWords
 import sqlite3
 
-con = sqlite3.connect('../share/anagrams.db')
+con = sqlite3.connect('../../share/anagrams.db')
 
 def getCharSeq(word):
     """
@@ -25,7 +25,7 @@ def initTable():
     """
     cur = con.cursor()
     # only the minimum setup just use the rowid if required
-    create_table_sql = "CREATE TABLE IF NOT EXISTS anagrams (word TEXT, charseq TEXT)"
+    create_table_sql = "CREATE TABLE IF NOT EXISTS anagrams (word TEXT, charseq TEXT, desc TEXT)"
     cur.execute(create_table_sql)
     con.commit()
 
@@ -40,7 +40,7 @@ def initTable():
         for word in words:
             data.append((word, getCharSeq(word)))
     # we build a huge array of data
-    insert_sql = "INSERT INTO anagrams VALUES (?,?)"
+    insert_sql = "INSERT INTO anagrams (word, charseq) VALUES (?,?)"
     cur.executemany(insert_sql, data)
     con.commit()
 
