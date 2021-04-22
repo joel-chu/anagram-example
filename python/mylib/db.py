@@ -9,21 +9,23 @@ class DB(object):
         self.con = None
         self.cur = None
 
-    def connect():
-        if (self.con == None || self.cur == None):
+    def connect(self):
+        if (self.con == None or self.cur == None):
             self.con = sqlite3.connect(self.pathToDb)
             self.cur = self.con.cursor()
 
-    def disconnect():
+    def disconnect(self):
         self.con.close()
 
-    def execute(sql, params = False):
+    def execute(self, sql, params = False):
         if (params != False):
-            self.cur.execute(sql, params)
+            result = self.cur.execute(sql, params)
         else:
-            self.cur.execute(sql)
+            result = self.cur.execute(sql)
         self.con.commit()
+        return result
 
-    def executeMany(sql, data):
-        self.cur.executemany(insert_sql, data)
+    def executeMany(self, sql, data):
+        result = self.cur.executemany(sql, data)
         self.con.commit()
+        return result

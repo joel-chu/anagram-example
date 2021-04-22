@@ -4,7 +4,7 @@
 # word (the original word)
 # characters (take the word apart then sort the characters in desc order)
 # len (the length of the word)
-import sqlite3
+
 
 
 from sys import argv
@@ -12,8 +12,9 @@ from sys import argv
 # See the import is different
 from mylib.main import WORDS_DIR, jsonData, getWords
 from mylib.deco import timer_decorator
+from mylib.db import DB
 
-con = sqlite3.connect('../share/anagrams.db')
+database = DB('../share/anagrams.db')
 
 def getCharSeq(word):
     """
@@ -30,11 +31,14 @@ def initTable():
     """
     prepare the input data
     """
-    cur = con.cursor()
+    # cur = con.cursor()
     # only the minimum setup just use the rowid if required
     create_table_sql = "CREATE TABLE IF NOT EXISTS anagrams (word TEXT, charseq TEXT, dict TEXT)"
-    cur.execute(create_table_sql)
-    con.commit()
+
+    database.execute(create_table_sql)
+
+    # cur.execute(create_table_sql)
+    # con.commit()
 
     max = 15 # jsonData['MAX_CHAR'] don't need this restriction
     min = jsonData['MIN_CHAR']
@@ -48,8 +52,8 @@ def initTable():
             data.append((word, getCharSeq(word)))
     # we build a huge array of data
     insert_sql = "INSERT INTO anagrams (word, charseq) VALUES (?,?)"
-    cur.executemany(insert_sql, data)
-    con.commit()
+    database.executeMany(insert_sql, data)
+    # con.commit()
 
     return True
 
@@ -59,14 +63,16 @@ def getAnagramData(word):
     """
     seq = getCharSeq(word)
     find_sql = "SELECT word from anagrams WHERE charseq=?"
-    cur = con.cursor()
+    # cur = con.cursor()
     # loop that later
-    return cur.execute(find_sql, (seq))
+    return database.execute(find_sql, (seq))
 
 def readTable(l = 2):
-    cur = con.cursor()
+    # cur = con.cursor()
     print(l)
-    for row in cur.execute("SELECT * FROM anagrams WHERE length(word) = ?", (int(l),)):
+    result = database.execute("SELECT * FROM anagrams WHERE length(word) = ?", (int(l),))
+
+    for row in result:
         print(row[0])
 
 # con.close() <-- just keep it open
@@ -76,13 +82,15 @@ if __name__ == '__main__':
     """
     Check the command
     """
+    database.connect()
+
     if (cmd == "init"):
         initTable()
     elif (cmd == "all"):
-        cur = con.cursor()
-        for row in cur.execute("SELECT * FROM anagrams"):
+        # cur = con.cursor()
+        for row in database.execute("SELECT * FROM anagrams"):
             print(row)
     else:
         readTable(cmd)
     # finally close the connections
-    con.close()
+    database.disconnect()
