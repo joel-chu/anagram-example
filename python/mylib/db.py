@@ -18,14 +18,22 @@ class DB(object):
         self.con.close()
 
     def execute(self, sql, params = False):
+        self.connect()
         if (params != False):
-            result = self.cur.execute(sql, params)
+            result = self.con.execute(sql, params)
         else:
-            result = self.cur.execute(sql)
+            result = self.con.execute(sql)
         self.con.commit()
         return result
 
     def executeMany(self, sql, data):
-        result = self.cur.executemany(sql, data)
+        self.connect()
+        result = self.con.executemany(sql, data)
         self.con.commit()
         return result
+
+    def insert(self, sql, data):
+        """
+        a wrapper method return the the last row id
+        """
+        return self.execute(sql, data).lastrowid

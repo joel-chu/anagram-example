@@ -107,3 +107,12 @@ def getAnagram(str, words):
             tried += 1
 
     return (False, tried, guessTotal) # couldn't find anything that should be impossible
+
+def getCharSeq(word):
+    """
+    input the possible world and sort the character by A-Z
+    """
+    seq = [ch for ch in word]
+    seq.sort()
+
+    return ''.join(seq)

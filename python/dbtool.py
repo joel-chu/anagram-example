@@ -10,20 +10,13 @@
 from sys import argv
 
 # See the import is different
-from mylib.main import WORDS_DIR, jsonData, getWords
+from mylib.main import WORDS_DIR, jsonData, getWords, getCharSeq
 from mylib.deco import timer_decorator
 from mylib.db import DB
 
 database = DB('../share/anagrams.db')
 
-def getCharSeq(word):
-    """
-    input the possible world and sort the character by A-Z
-    """
-    seq = [ch for ch in word]
-    seq.sort()
 
-    return ''.join(seq)
 
 # try the decorator again
 @timer_decorator

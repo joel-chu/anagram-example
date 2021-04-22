@@ -7,7 +7,7 @@ java*/Test.class
 .idea
 anagram-example.iml
 
-**/__pycache__/
+**/__pycache__/*
 python/test.py
 python/*.pyc
 python/.pytest.cache
