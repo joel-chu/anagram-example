@@ -9,7 +9,7 @@ from sys import argv
 from bs4 import BeautifulSoup
 from lxml import html
 from mylib.db import DB
-from mylib.main import getDuration, countDownMsg
+from mylib.main import getFormatDuration, countDownMsg
 
 database = DB('../share/anagrams.db')
 
@@ -80,7 +80,7 @@ if __name__ == '__main__':
 
             # time.sleep(minute)
 
-        print(f"ALL DONE! And it took {getDuration(totalSeconds)} minutes", end="\r")
+        print(f"ALL DONE! And it took {getFormatDuration(totalSeconds)}", end="\r")
         database.disconnect()
     else:
         print("nothing")
