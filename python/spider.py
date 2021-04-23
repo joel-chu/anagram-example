@@ -42,6 +42,7 @@ def writeToDb(html_doc, word):
     return database.execute(sql, (str(html_doc), word))
 
 def goFetch(word):
+    print(f"Getting dict for {word}", end="\r")
     soup = getHtmlDoc(word)
     if (soup != False):
         # write this to a file
@@ -58,6 +59,7 @@ def goFetch(word):
 # run in from the command line
 if __name__ == '__main__':
     if len(argv) > 1:
+        totalMinutes = 0
         database.connect()
 
         countResult = database.execute("SELECT count(*) as total FROM anagrams WHERE dict IS NULL")
@@ -70,13 +72,16 @@ if __name__ == '__main__':
         for row in result:
             # i += 1
             word, charseq, dict = row
-            print(f"{total - 1} to go\ngetting dict for {word}", end="\r")
 
             goFetch(word)
-
+            total -= 1
             minute = random.randrange(3, 10) * 60 # 3 to 10 minutes sleep
-            print(f"Done for {word}, now I am going to sleep for {minute} seconds")
+            totalMinutes += minute/60
+            print(f"Done for {word}; {total} to go. I am going to sleep for {minute/60} minutes", end="\r")
             time.sleep(minute)
+
+        print(f"ALL DONE! And it took {totalMinutes} minutes", end="\r")
+        database.disconnect()
     else:
         print("nothing")
 
