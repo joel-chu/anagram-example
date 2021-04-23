@@ -17,3 +17,5 @@ kotlin/anagram.jar
 kotlin/exp/*
 
 php/test.php
+
+share/anagrams.db

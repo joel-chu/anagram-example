@@ -38,38 +38,47 @@ def writeToDb(html_doc, word):
     write this to the db for now
     """
     sql = "UPDATE anagrams SET dict=? WHERE word=?"
-    result = database.execute(sql, (html_doc, word))
 
-    return True
+    return database.execute(sql, (str(html_doc), word))
 
-def run(word):
+def goFetch(word):
     soup = getHtmlDoc(word)
     if (soup != False):
         # write this to a file
-        data = content.select("#base-pw > main > section > section > div:nth-child(2)")
+        data = soup.select("#base-pw > main > section > section > div:nth-child(2)")
         # we need to write this to the database instead
         if (len(data) > 0):
             writeToDb(data[0], word)
+        else:
+            print("The selector not able to get anything", end="\r")
     else:
-        print("Something went wrong! Not getting anything")
+        print("Something went wrong! Not getting anything", end="\r")
 
 
 # run in from the command line
 if __name__ == '__main__':
     if len(argv) > 1:
         database.connect()
-        result = database.execute("SELECT * FROM anagrams")
-        i = 0
-        for data in result:
-            i += 1
-            print(data, end="\r")
-            sec = random.randrange(1, 5)
-            time.sleep(sec)
-            if (i > 50):
-                print("I am tired of waiting ...")
-                exit(0)
+
+        countResult = database.execute("SELECT count(*) as total FROM anagrams WHERE dict IS NULL")
+        row = countResult.fetchone()
+        total = row[0]
+
+        result = database.execute("SELECT * FROM anagrams WHERE dict IS NULL")
+        # print(f"{total} to process")
+
+        for row in result:
+            # i += 1
+            word, charseq, dict = row
+            print(f"{total - 1} to go\ngetting dict for {word}", end="\r")
+
+            goFetch(word)
+
+            minute = random.randrange(3, 10) * 60 # 3 to 10 minutes sleep
+            print(f"Done for {word}, now I am going to sleep for {minute} seconds")
+            time.sleep(minute)
     else:
-        
+        print("nothing")
 
 
 
