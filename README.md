@@ -15,7 +15,7 @@ In here, you will learn quite few things:
 - Comprehension (Python)
 - Math operation
 - [Algorithm](./doc/algorithm.md)
-- SQL (using sqlite) _coming soon_
+- SQL (using sqlite3) See the `python` folder with a web crawler example
 
 And a few bits here and there.
 
@@ -42,10 +42,10 @@ Run it like so:
 $ node ./js/anagram.js abort
 ```
 
-There is also another version call `main.js`. First you need to make the file execuatable:
+There is also another version call `main.js`. First you need to make the file executable:
 
 ```sh
-$ chmod u+x js/main.js
+$ chmod +x js/main.js
 ```
 
 Then just run it like this:
@@ -56,7 +56,7 @@ $ js/main.js
 
 ---
 
-For developers using Deepin 20.x system, you might want to take a look at this [note about setting up node.js](./doc/deepin-20.md) on your system.
+For developers using [Deepin 20.x system](deepin.org), you might want to take a look at this [note about setting up node.js](./doc/deepin-20.md) on your system.
 
 Also, I have written a [development change log](./doc/changelog.md) to explain more in depth about the why and how.  
 
@@ -73,7 +73,7 @@ If you have `python-is-python3` (on Ubuntu / Debian) then just `python`.
 You can also call the interactive version `main.py` script in the `/python` folder; first you need to make it an executable file:
 
 ```sh
-$ chmod u+x python/main.py
+$ chmod +x python/main.py
 ```
 
 Then you can just call it directly (at least it works on Linux)
@@ -95,7 +95,7 @@ You can [read this note](./doc/python-recursion-error.md) about how we fix the *
 
 **Due to the <abbr title="Pain in your a**">PIA</abbr> nature of Java. You need to install [org.json.simple](https://code.google.com/archive/p/json-simple/) to your `CLASSPATH` before you can do anything with this code.**
 
-Or you can download the source then use `ant` to build it. Put the `org` folder (not the `classes`, one level down) into the `/java` folder. Then it should work (Given that you haven't setup your `CLASSPATH`, it will be just `.`)
+Or you can download the source then use `ant` to build it. Put the `org` folder (not the `classes`, one level down) into the `/javalang` folder. Then it should work (Given that you haven't setup your `CLASSPATH`, it will be just `.`)
 
 ```sh
 $ cd javalang
@@ -126,7 +126,7 @@ If you try to execute the program from outside the folder, java will think you a
 It was develop using the latest PHP 8.x. You might have to install / upgrade first.
 You can [read this note](./doc/php-installation.md) about what we have tried and tested.
 
-To run the onliner version:
+To run the one liner version:
 
 ```php
 $ php php/anagram.php abort
@@ -135,7 +135,7 @@ $ php php/anagram.php abort
 If you want to run the interactive version then you first you need to do:
 
 ```php
-$ chmod u+x php/main.php
+$ chmod +x php/main.php
 $ php/main.php
 ```
 
