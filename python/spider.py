@@ -9,7 +9,7 @@ from sys import argv
 from bs4 import BeautifulSoup
 from lxml import html
 from mylib.db import DB
-
+from mylib.main import getDuration, countDownMsg
 
 database = DB('../share/anagrams.db')
 
@@ -67,20 +67,20 @@ if __name__ == '__main__':
         total = row[0]
 
         result = database.execute("SELECT * FROM anagrams WHERE dict IS NULL")
-        # print(f"{total} to process")
+        totalSeconds = 0
 
         for row in result:
-            # i += 1
             word, charseq, dict = row
-
             goFetch(word)
             total -= 1
             minute = random.randrange(3, 10) * 60 # 3 to 10 minutes sleep
-            totalMinutes += minute/60
-            print(f"Done for {word}; {total} to go. I am going to sleep for {minute/60} minutes", end="\r")
-            time.sleep(minute)
+            totalSeconds += minute
+            msg = f"Done for {word}, {total} to go. I am going to "
+            countDownMsg(minute, msg)
 
-        print(f"ALL DONE! And it took {totalMinutes} minutes", end="\r")
+            # time.sleep(minute)
+
+        print(f"ALL DONE! And it took {getDuration(totalSeconds)} minutes", end="\r")
         database.disconnect()
     else:
         print("nothing")
