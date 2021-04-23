@@ -2,6 +2,7 @@
 
 from anagram import main, jsonData
 
+
 # make this interactive
 
 def run():
@@ -15,8 +16,11 @@ def run():
         if (word == "quit()"):
             exit(0)
         else:
+
             main(word)
             print("-" * 20)
+    return True
+
 
 
 run()

@@ -7,13 +7,16 @@ java*/Test.class
 .idea
 anagram-example.iml
 
-python/__pycache__/*
+**/__pycache__/*
 python/test.py
 python/*.pyc
-python/.pytest.cache 
+python/.pytest.cache
 
 kotlin/test.kt
 kotlin/anagram.jar
 kotlin/exp/*
 
 php/test.php
+
+share/anagrams.db
+share/dictionary.html
